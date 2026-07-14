@@ -3,11 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Explore Emissions | The Climate Bill</title>
-<meta name="description" content="An interactive world map of CO2 emissions by country. Switch between annual, historical since 1850, and per person views.">
+<title>Explore Emissions by Country | The Climate Bill</title>
+<meta name="description" content="An interactive world map of CO2 emissions. Switch between annual, historical since 1850, and per person views for every country.">
+<meta name="author" content="The Climate Bill">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://theclimatebill.github.io/explore.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Climate Bill">
+<meta property="og:title" content="Explore Emissions by Country | The Climate Bill">
+<meta property="og:description" content="An interactive world map of CO2 emissions. Switch between annual, historical since 1850, and per person views for every country.">
+<meta property="og:url" content="https://theclimatebill.github.io/explore.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1200&h=630&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Explore Emissions by Country | The Climate Bill">
+<meta name="twitter:description" content="An interactive world map of CO2 emissions. Switch between annual, historical since 1850, and per person views for every country.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1200&h=630&fit=crop">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23eaf3f9'/><circle cx='50' cy='50' r='26' fill='none' stroke='%233f8dc4' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23c9683f'/></svg>">
 <style>
+[data-theme="dark"]{
+  --bg:#14120f;--surface:#1c1a16;--surface2:#242019;--line:rgba(255,255,255,.1);
+  --ink:#f3ecdd;--muted:#a89f8c;--sky:#5aa3d6;--sky-deep:#7bb8e0;--sky-light:#1c2a33;
+  --terracotta:#e08058;--sand:#e0b787;--moss:#8fb56a;--clay:#e0895a;
+}
+[data-theme="dark"] .hero-hub{background:linear-gradient(180deg,#1c2a33 0%,var(--bg) 70%)}
+[data-theme="dark"] .cp-cell{background:#242019}
+[data-theme="dark"] .calc-fact{background:#242019}
+[data-theme="dark"] .fav-btn svg{stroke:var(--ink)}
+
+.theme-btn{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:7px 13px;font-family:var(--mono);font-size:.7rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;margin-left:10px}
+.theme-btn:hover{border-color:var(--sky)}
+
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 :root{
   --bg:#faf7f0;--surface:#f3ecdd;--surface2:#ebe0c9;--line:rgba(43,38,32,.12);
@@ -259,8 +284,19 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   .dtable-head,.dtable-row{grid-template-columns:1.3fr 1fr}
   .dtable-head>*:nth-child(3),.dtable-head>*:nth-child(4),.dtable-row>*:nth-child(3),.dtable-row>*:nth-child(4){display:none}
 }
+
+.photo-card{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:16/7;margin:24px 0}
+.photo-card img{width:100%;height:100%;object-fit:cover}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(20,20,18,.85) 0%,transparent 100%);padding:20px 18px 14px;font-size:.8rem;color:#f3ecdd}
+.photo-caption .cap-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#f0c896;display:block;margin-bottom:3px}
+
+.video-wrap{position:relative;padding-bottom:52%;height:0;overflow:hidden;border-radius:12px;margin:24px 0;border:1px solid var(--line)}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.video-cap{font-size:.78rem;color:var(--muted);margin-top:10px;line-height:1.6}
+.video-cap a{color:var(--sky-deep);text-decoration:none}
 </style>
 
+<script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
 </head>
 <body>
 <nav>
@@ -276,6 +312,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <li><a href="compare.html">Compare</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">◐ Theme</button>
   <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -288,6 +325,10 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <div class="sec-eye">Emissions by country</div>
     <h2 class="sec-title">Every country. Three ways to see it.</h2>
     <p class="sec-sub">Colour shows CO2 emissions. Switch views and the map inverts: annual shows who is polluting now, cumulative shows who built the problem since 1850, per person shows how much each citizen actually burns.</p>
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=75" alt="Industrial skyline" loading="lazy">
+      <div class="photo-caption"><span class="cap-tag">Global emissions</span>36.8 gigatonnes of CO2 were released in 2023, the highest ever recorded.</div>
+    </div>
     <div class="map-toggle" id="map-toggle"></div>
     <div class="toggle-note" id="toggle-note"></div>
     <div class="map-wrap">
@@ -299,6 +340,10 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
       <svg id="world-map" viewBox="0 0 960 500"></svg>
     </div>
     <div class="map-legend" id="map-legend"></div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/x1SgmFa0r04" title="NASA: A Year in the Life of Earth's CO2" loading="lazy" allowfullscreen></iframe>
+    </div>
+    <p class="video-cap">NASA's ultra high resolution atmospheric model tracking carbon dioxide as it moves around the planet over a single year. Watch the visible plumes of fossil fuel emissions build over industrial regions and shift with the seasons. Source: <a href="https://svs.gsfc.nasa.gov/11719/" target="_blank">NASA Scientific Visualization Studio</a></p>
     <div class="search-row">
       <input type="text" id="searchInput" placeholder="Search any country, for example India, France, Poland, Kenya...">
       <button onclick="handleSearch()">Search</button>
@@ -534,6 +579,14 @@ document.addEventListener("DOMContentLoaded", function(){
  renderToggle();buildCarbonMajors();buildChips();buildMap();
  document.getElementById("searchInput").addEventListener("keydown",function(e){if(e.key==="Enter")handleSearch();});
 });
+</script>
+<script>
+function toggleTheme(){
+  var html=document.documentElement;
+  var isDark=html.getAttribute('data-theme')==='dark';
+  if(isDark){html.removeAttribute('data-theme');localStorage.setItem('cb-theme','light');}
+  else{html.setAttribute('data-theme','dark');localStorage.setItem('cb-theme','dark');}
+}
 </script>
 </body>
 </html>

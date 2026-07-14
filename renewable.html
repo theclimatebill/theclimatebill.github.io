@@ -3,11 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Renewable Energy | The Climate Bill</title>
+<title>Renewable Energy by Country | The Climate Bill</title>
 <meta name="description" content="Who is leading the clean energy race and who is falling behind. Renewable electricity share by country and global capacity growth.">
+<meta name="author" content="The Climate Bill">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://theclimatebill.github.io/renewable.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Climate Bill">
+<meta property="og:title" content="Renewable Energy by Country | The Climate Bill">
+<meta property="og:description" content="Who is leading the clean energy race and who is falling behind. Renewable electricity share by country and global capacity growth.">
+<meta property="og:url" content="https://theclimatebill.github.io/renewable.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=630&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Renewable Energy by Country | The Climate Bill">
+<meta name="twitter:description" content="Who is leading the clean energy race and who is falling behind. Renewable electricity share by country and global capacity growth.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=630&fit=crop">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23eaf3f9'/><circle cx='50' cy='50' r='26' fill='none' stroke='%233f8dc4' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23c9683f'/></svg>">
 <style>
+[data-theme="dark"]{
+  --bg:#14120f;--surface:#1c1a16;--surface2:#242019;--line:rgba(255,255,255,.1);
+  --ink:#f3ecdd;--muted:#a89f8c;--sky:#5aa3d6;--sky-deep:#7bb8e0;--sky-light:#1c2a33;
+  --terracotta:#e08058;--sand:#e0b787;--moss:#8fb56a;--clay:#e0895a;
+}
+[data-theme="dark"] .hero-hub{background:linear-gradient(180deg,#1c2a33 0%,var(--bg) 70%)}
+[data-theme="dark"] .cp-cell{background:#242019}
+[data-theme="dark"] .calc-fact{background:#242019}
+[data-theme="dark"] .fav-btn svg{stroke:var(--ink)}
+
+.theme-btn{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:7px 13px;font-family:var(--mono);font-size:.7rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;margin-left:10px}
+.theme-btn:hover{border-color:var(--sky)}
+
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 :root{
   --bg:#faf7f0;--surface:#f3ecdd;--surface2:#ebe0c9;--line:rgba(43,38,32,.12);
@@ -259,8 +284,14 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   .dtable-head,.dtable-row{grid-template-columns:1.3fr 1fr}
   .dtable-head>*:nth-child(3),.dtable-head>*:nth-child(4),.dtable-row>*:nth-child(3),.dtable-row>*:nth-child(4){display:none}
 }
+
+.photo-card{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:16/7;margin:24px 0}
+.photo-card img{width:100%;height:100%;object-fit:cover}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(20,20,18,.85) 0%,transparent 100%);padding:20px 18px 14px;font-size:.8rem;color:#f3ecdd}
+.photo-caption .cap-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#f0c896;display:block;margin-bottom:3px}
 </style>
 
+<script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
 </head>
 <body>
 <nav>
@@ -276,6 +307,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <li><a href="compare.html">Compare</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">◐ Theme</button>
   <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -288,6 +320,10 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   <h2 class="sec-title">The clean energy race.</h2>
   <p class="sec-sub">Renewable energy is growing faster than any energy source in history. In 2024 the world added a record 585 gigawatts of renewable capacity. But the picture varies enormously by country.</p>
 
+  <div class="photo-card">
+    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&q=75" alt="Solar panels" loading="lazy">
+    <div class="photo-caption"><span class="cap-tag">Clean energy</span>The world added a record 585 gigawatts of renewable capacity in 2024.</div>
+  </div>
   <div class="resp-grid">
     <div class="resp-card">
       <div class="chart-title">Share of electricity from renewables</div>
@@ -377,6 +413,14 @@ document.addEventListener("DOMContentLoaded", function(){
  buildRenewBars();
  lineChart("chart-renew",["2010","2013","2016","2019","2022","2024"],[1226,1565,2011,2538,3382,4448],"#3f8dc4",4600,1000);
 });
+</script>
+<script>
+function toggleTheme(){
+  var html=document.documentElement;
+  var isDark=html.getAttribute('data-theme')==='dark';
+  if(isDark){html.removeAttribute('data-theme');localStorage.setItem('cb-theme','light');}
+  else{html.setAttribute('data-theme','dark');localStorage.setItem('cb-theme','dark');}
+}
 </script>
 </body>
 </html>

@@ -3,21 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carbon Footprint Calculator | The Climate Bill</title>
-<meta name="description" content="Calculate your personal carbon footprint from flights, driving, diet, home energy and shopping, and see how it compares with people around the world.">
-<meta name="author" content="The Climate Bill">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://theclimatebill.github.io/calculator.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="The Climate Bill">
-<meta property="og:title" content="Carbon Footprint Calculator | The Climate Bill">
-<meta property="og:description" content="Calculate your personal carbon footprint from flights, driving, diet, home energy and shopping, and see how it compares with people around the world.">
-<meta property="og:url" content="https://theclimatebill.github.io/calculator.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&h=630&fit=crop">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Carbon Footprint Calculator | The Climate Bill">
-<meta name="twitter:description" content="Calculate your personal carbon footprint from flights, driving, diet, home energy and shopping, and see how it compares with people around the world.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&h=630&fit=crop">
+<title>Page Not Found | The Climate Bill</title>
+<meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23eaf3f9'/><circle cx='50' cy='50' r='26' fill='none' stroke='%233f8dc4' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23c9683f'/></svg>">
 <style>
 [data-theme="dark"]{
@@ -26,9 +13,6 @@
   --terracotta:#e08058;--sand:#e0b787;--moss:#8fb56a;--clay:#e0895a;
 }
 [data-theme="dark"] .hero-hub{background:linear-gradient(180deg,#1c2a33 0%,var(--bg) 70%)}
-[data-theme="dark"] .cp-cell{background:#242019}
-[data-theme="dark"] .calc-fact{background:#242019}
-[data-theme="dark"] .fav-btn svg{stroke:var(--ink)}
 
 .theme-btn{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:7px 13px;font-family:var(--mono);font-size:.7rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;margin-left:10px}
 .theme-btn:hover{border-color:var(--sky)}
@@ -284,8 +268,6 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   .dtable-head,.dtable-row{grid-template-columns:1.3fr 1fr}
   .dtable-head>*:nth-child(3),.dtable-head>*:nth-child(4),.dtable-row>*:nth-child(3),.dtable-row>*:nth-child(4){display:none}
 }
-.calc-you{background:var(--clay)}
-.calc-other{background:var(--sky)}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -300,7 +282,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <li><a href="explore.html">Explore</a></li>
     <li><a href="impact.html">Impact</a></li>
     <li><a href="renewable.html">Renewable Energy</a></li>
-    <li><a href="calculator.html" style="color:var(--sky-deep)">Calculator</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
     <li><a href="compare.html">Compare</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
@@ -311,83 +293,15 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 </nav>
 
 
-<div class="full-section" style="padding-top:120px">
-  <div class="inner">
-    <div class="chapter">A Climate Bill tool</div>
-    <div class="sec-eye">Your carbon footprint</div>
-    <h2 class="sec-title">Measure your own emissions.</h2>
-    <p class="sec-sub">It is easy to read about emissions as something other people produce. They are not. Every flight, every mile driven, every meal has a number attached to it. Answer six questions and see yours.</p>
-    <div class="calc-grid">
-      <div class="calc-panel">
-        <div class="calc-q">
-          <label>Flights per year <span class="rng-val" id="v-fly">2</span></label>
-          <div class="qhint">Return flights of roughly four hours or more</div>
-          <input type="range" id="q-fly" min="0" max="12" value="2" oninput="document.getElementById('v-fly').textContent=this.value">
-        </div>
-        <div class="calc-q">
-          <label>Car miles per year <span class="rng-val" id="v-car">6,000</span></label>
-          <div class="qhint">Set to zero if you do not drive</div>
-          <input type="range" id="q-car" min="0" max="25000" step="500" value="6000" oninput="document.getElementById('v-car').textContent=Number(this.value).toLocaleString()">
-        </div>
-        <div class="calc-q">
-          <label>Car fuel type</label>
-          <select id="q-fuel">
-            <option value="0.34">Petrol</option>
-            <option value="0.30">Diesel</option>
-            <option value="0.18">Hybrid</option>
-            <option value="0.08">Electric</option>
-            <option value="0">I do not drive</option>
-          </select>
-        </div>
-        <div class="calc-q">
-          <label>Your diet</label>
-          <select id="q-diet">
-            <option value="3.3">Meat with most meals</option>
-            <option value="2.5" selected>Meat a few times a week</option>
-            <option value="1.9">Meat rarely, fish and dairy</option>
-            <option value="1.7">Vegetarian</option>
-            <option value="1.5">Vegan</option>
-          </select>
-        </div>
-        <div class="calc-q">
-          <label>Home energy</label>
-          <select id="q-home">
-            <option value="3.5">Large home, gas heating</option>
-            <option value="2.4" selected>Average home, gas heating</option>
-            <option value="1.4">Average home, mostly electric</option>
-            <option value="0.6">Well insulated, renewable tariff</option>
-          </select>
-        </div>
-        <div class="calc-q">
-          <label>Shopping and consumption</label>
-          <select id="q-shop">
-            <option value="3.2">I buy a lot of new things</option>
-            <option value="2.0" selected>Average</option>
-            <option value="1.2">Careful, mostly second hand</option>
-            <option value="0.7">Very little, repair and reuse</option>
-          </select>
-        </div>
-        <button class="calc-btn" onclick="runCalc();saveCalcInputs()">Calculate my footprint</button>
-      </div>
-      <div class="calc-panel">
-        <div id="calc-empty" class="calc-empty">Answer the questions and press calculate.<br><br>Your result will show which of your own actions produce the most CO2, how you compare with people in other countries, and what would happen if everyone on Earth lived the way you do.</div>
-        <div id="calc-result" style="display:none">
-          <div class="calc-hero">
-            <div class="calc-num" id="calc-num">0</div>
-            <div class="calc-unit">tonnes of CO2 per year</div>
-            <div class="calc-sub" id="calc-verdict"></div>
-          </div>
-          <div class="calc-h">Which of your actions caused it</div>
-          <div id="calc-breakdown"></div>
-          <div class="calc-h">How you compare</div>
-          <div id="calc-compare"></div>
-          <div class="calc-h">What your choices mean at scale</div>
-          <div id="calc-facts"></div>
-          <div class="calc-truth" id="calc-truth"></div>
-        </div>
-      </div>
+<div class="hero-hub" style="min-height:60vh">
+  <div class="hero-hub-inner">
+    <div class="hub-eyebrow">404</div>
+    <h1 class="hub-h1">This page <em>doesn't exist.</em></h1>
+    <p class="hub-sub">The page you were looking for has moved, or never existed. Try one of the tools below instead.</p>
+    <div class="hub-ctas">
+      <a href="index.html" class="btn-p">Back to homepage</a>
+      <a href="explore.html" class="btn-g">Explore the map</a>
     </div>
-    <p style="margin-top:20px;font-size:.72rem;color:var(--mist);font-family:var(--mono)">Estimates use typical emission factors per activity. For a fuller assessment try the <a href="https://www.wwf.org.uk/carbon-footprint-calculator" target="_blank" style="color:var(--ember)">WWF calculator</a> or the <a href="https://footprint.wwf.org.uk" target="_blank" style="color:var(--ember)">UK government backed carbon calculator</a>.</p>
   </div>
 </div>
 
@@ -407,99 +321,6 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <div class="dbadges"><span class="dbadge">NASA</span><span class="dbadge">NOAA</span><span class="dbadge">WMO</span><span class="dbadge">IPCC</span><span class="dbadge">IEA</span><span class="dbadge">World Bank</span></div>
   </div>
 </footer>
-
-<script>
-/* ============ CARBON CALCULATOR ============ */
-const WORLD_AVG=[["🇶🇦 Qatar",37],["🇦🇺 Australia",14.8],["🇺🇸 United States",14.3],["🇷🇺 Russia",11.4],["🇨🇳 China",8.0],["🇩🇪 Germany",7.1],["🇬🇧 United Kingdom",4.4],["🌍 World average",4.7],["🇮🇳 India",2.0],["🇵🇰 Pakistan",1.0],["🇧🇩 Bangladesh",0.6],["🇪🇹 Ethiopia",0.2]];
-function runCalc(){
- const fly=+document.getElementById("q-fly").value;
- const miles=+document.getElementById("q-car").value;
- const fuel=+document.getElementById("q-fuel").value;
- const diet=+document.getElementById("q-diet").value;
- const home=+document.getElementById("q-home").value;
- const shop=+document.getElementById("q-shop").value;
- const eFly=fly*0.9, eCar=(miles*fuel)/1000, eDiet=diet, eHome=home, eShop=shop;
- const total=eFly+eCar+eDiet+eHome+eShop;
- const t=total.toFixed(1);
- document.getElementById("calc-empty").style.display="none";
- document.getElementById("calc-result").style.display="block";
- countUp("calc-num",total);
- const target=2.3;
- let verd;
- if(total>10) verd="That is well above the UK average and more than four times the level the world needs to reach.";
- else if(total>4.7) verd="That is above the global average of 4.7 tonnes per person.";
- else if(total>target) verd="That is below the global average, but still above the 2.3 tonne level needed for 1.5 degrees.";
- else verd="That is at or below the level the world needs to reach to stay near 1.5 degrees.";
- document.getElementById("calc-verdict").textContent=verd;
-
- const parts=[["Flights",eFly,"#d64d1e"],["Driving",eCar,"#c77f10"],["Diet",eDiet,"#5a9e1c"],["Home energy",eHome,"#1f9aa8"],["Shopping",eShop,"#5f6f68"]];
- const mx=Math.max.apply(null,parts.map(function(p){return p[1];}))||1;
- document.getElementById("calc-breakdown").innerHTML=parts.sort(function(x,y){return y[1]-x[1];}).map(function(p){
-  const pct=total>0?Math.round(p[1]/total*100):0;
-  return '<div class="calc-cmp"><div class="calc-cmp-top"><span>'+p[0]+'</span><span class="calc-cmp-v">'+p[1].toFixed(1)+' t · '+pct+'%</span></div><div class="calc-track"><div class="calc-fill" style="width:'+(p[1]/mx*100)+'%;background:'+p[2]+'"></div></div></div>';}).join("");
-
- const mxc=Math.max(37,total);
- let ch='<div class="calc-cmp"><div class="calc-cmp-top"><span style="color:#d64d1e;font-weight:600">You</span><span class="calc-cmp-v" style="color:#d64d1e">'+t+' t</span></div><div class="calc-track"><div class="calc-fill calc-you" style="width:'+(total/mxc*100)+'%"></div></div></div>';
- ch+=WORLD_AVG.map(function(w){
-  return '<div class="calc-cmp"><div class="calc-cmp-top"><span>'+w[0]+'</span><span class="calc-cmp-v">'+w[1]+' t</span></div><div class="calc-track"><div class="calc-fill calc-other" style="width:'+(w[1]/mxc*100)+'%"></div></div></div>';}).join("");
- document.getElementById("calc-compare").innerHTML=ch;
-
- const worldIfAll=(total*8.1).toFixed(1);
- const ratio=(total*8.1/37.8).toFixed(1);
- const bdMult=(total/0.6).toFixed(0);
- const inMult=(total/2.0).toFixed(1);
- let f="";
- if(eFly>0) f+='<div class="calc-fact">Your <strong>'+fly+' flight'+(fly===1?'':'s')+'</strong> alone produced <strong>'+eFly.toFixed(1)+' tonnes</strong>. A single long haul return flight emits roughly the same as an average person in Ethiopia produces in <strong>four and a half years</strong>.</div>';
- f+='<div class="calc-fact">Your footprint is <strong>'+bdMult+' times</strong> that of the average person in Bangladesh, and <strong>'+inMult+' times</strong> that of the average person in India. Both countries face far greater climate damage than you are likely to.</div>';
- f+='<div class="calc-fact">If all <strong>8.1 billion people</strong> on Earth lived exactly as you do, global emissions would be about <strong>'+worldIfAll+' gigatonnes</strong> a year, which is <strong>'+ratio+' times</strong> current global emissions of roughly 37.8 Gt.</div>';
- if(total>2.3) f+='<div class="calc-fact">To reach the level compatible with 1.5 degrees, the average person needs to emit about <strong>2.3 tonnes</strong> a year. You would need to cut <strong>'+(total-2.3).toFixed(1)+' tonnes</strong>, a reduction of <strong>'+Math.round((total-2.3)/total*100)+'%</strong>.</div>';
- document.getElementById("calc-facts").innerHTML=f;
-
- document.getElementById("calc-truth").innerHTML='<div class="calc-truth-h">Both things are true</div>Your emissions are real. Every figure above traces directly back to a choice you made, and the aggregate of billions of such choices is what warms the planet. Individual action counts, and it is the part you control.<br><br>It is also true that you did not build the system you live in. Around <strong>4.4 percent of all industrial emissions since 1988</strong> come from a single company, Saudi Aramco. The idea of a personal carbon footprint was itself popularised by BP in a 2004 advertising campaign. Knowing your number is worth something. Using your vote, your voice and your work to change the rules that produce those numbers is worth considerably more.';
-}
-function countUp(id,target){
- const el=document.getElementById(id);if(!el)return;
- let cur=0;const step=target/38;
- const iv=setInterval(function(){
-  cur+=step;
-  if(cur>=target){cur=target;clearInterval(iv);}
-  el.textContent=cur.toFixed(1);
- },18);}
-
-
-</script>
-<script>
-function toggleTheme(){
-  var html=document.documentElement;
-  var isDark=html.getAttribute('data-theme')==='dark';
-  if(isDark){html.removeAttribute('data-theme');localStorage.setItem('cb-theme','light');}
-  else{html.setAttribute('data-theme','dark');localStorage.setItem('cb-theme','dark');}
-}
-</script>
-<script>
-function saveCalcInputs(){
-  var data={fly:document.getElementById('q-fly').value,car:document.getElementById('q-car').value,fuel:document.getElementById('q-fuel').value,diet:document.getElementById('q-diet').value,home:document.getElementById('q-home').value,shop:document.getElementById('q-shop').value};
-  try{localStorage.setItem('cb-calc-inputs', JSON.stringify(data));}catch(e){}
-}
-function restoreCalcInputs(){
-  try{
-    var raw=localStorage.getItem('cb-calc-inputs');
-    if(!raw)return;
-    var d=JSON.parse(raw);
-    document.getElementById('q-fly').value=d.fly; document.getElementById('v-fly').textContent=d.fly;
-    document.getElementById('q-car').value=d.car; document.getElementById('v-car').textContent=Number(d.car).toLocaleString();
-    document.getElementById('q-fuel').value=d.fuel;
-    document.getElementById('q-diet').value=d.diet;
-    document.getElementById('q-home').value=d.home;
-    document.getElementById('q-shop').value=d.shop;
-    runCalc();
-    var note=document.createElement('div');
-    note.style.cssText='font-family:var(--mono);font-size:.68rem;color:var(--sky-deep);margin-top:10px;text-align:center';
-    note.textContent='Restored from your last visit.';
-    document.getElementById('calc-result').appendChild(note);
-  }catch(e){}
-}
-document.addEventListener('DOMContentLoaded', restoreCalcInputs);
-</script>
+<script>function toggleTheme(){var html=document.documentElement;var isDark=html.getAttribute('data-theme')==='dark';if(isDark){html.removeAttribute('data-theme');localStorage.setItem('cb-theme','light');}else{html.setAttribute('data-theme','dark');localStorage.setItem('cb-theme','dark');}}</script>
 </body>
 </html>

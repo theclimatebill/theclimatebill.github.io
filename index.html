@@ -5,9 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Climate Bill | Someone always pays the bill</title>
 <meta name="description" content="Who caused the climate crisis, who is paying for it, and who is doing something about it. Explore emissions, impacts and renewable energy data for every country.">
+<meta name="author" content="The Climate Bill">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://theclimatebill.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Climate Bill">
+<meta property="og:title" content="The Climate Bill | Someone always pays the bill">
+<meta property="og:description" content="Who caused the climate crisis, who is paying for it, and who is doing something about it. Explore emissions, impacts and renewable energy data for every country.">
+<meta property="og:url" content="https://theclimatebill.github.io/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&h=630&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Climate Bill | Someone always pays the bill">
+<meta name="twitter:description" content="Who caused the climate crisis, who is paying for it, and who is doing something about it. Explore emissions, impacts and renewable energy data for every country.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&h=630&fit=crop">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23eaf3f9'/><circle cx='50' cy='50' r='26' fill='none' stroke='%233f8dc4' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23c9683f'/></svg>">
 <style>
+[data-theme="dark"]{
+  --bg:#14120f;--surface:#1c1a16;--surface2:#242019;--line:rgba(255,255,255,.1);
+  --ink:#f3ecdd;--muted:#a89f8c;--sky:#5aa3d6;--sky-deep:#7bb8e0;--sky-light:#1c2a33;
+  --terracotta:#e08058;--sand:#e0b787;--moss:#8fb56a;--clay:#e0895a;
+}
+[data-theme="dark"] .hero-hub{background:linear-gradient(180deg,#1c2a33 0%,var(--bg) 70%)}
+[data-theme="dark"] .cp-cell{background:#242019}
+[data-theme="dark"] .calc-fact{background:#242019}
+[data-theme="dark"] .fav-btn svg{stroke:var(--ink)}
+
+.theme-btn{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:7px 13px;font-family:var(--mono);font-size:.7rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;margin-left:10px}
+.theme-btn:hover{border-color:var(--sky)}
+
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 :root{
   --bg:#faf7f0;--surface:#f3ecdd;--surface2:#ebe0c9;--line:rgba(43,38,32,.12);
@@ -259,8 +284,26 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   .dtable-head,.dtable-row{grid-template-columns:1.3fr 1fr}
   .dtable-head>*:nth-child(3),.dtable-head>*:nth-child(4),.dtable-row>*:nth-child(3),.dtable-row>*:nth-child(4){display:none}
 }
+
+.hero-hub{position:relative;overflow:hidden}
+.hero-hub-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1569163139394-de4e4f43e4e3?w=1600&q=80') center/cover;opacity:.14;z-index:0}
+.hero-hub-inner{position:relative;z-index:1}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:30px}
+.photo-card{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:4/3}
+.photo-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.photo-card:hover img{transform:scale(1.04)}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(20,20,18,.85) 0%,transparent 100%);padding:18px 14px 12px;font-size:.74rem;color:#f3ecdd}
+.photo-caption .cap-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#f0c896;display:block;margin-bottom:3px}
+
+.live-ticker{background:var(--surface2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 32px;text-align:center}
+.live-ticker-num{font-family:var(--serif);font-weight:900;font-size:1.9rem;color:var(--clay);letter-spacing:-.02em}
+.live-ticker-lab{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.share-row{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.share-btn{font-family:var(--mono);font-size:.72rem;padding:9px 16px;border-radius:20px;background:var(--surface);border:1px solid var(--line);color:var(--muted);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.share-btn:hover{border-color:var(--sky)}
 </style>
 
+<script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
 </head>
 <body>
 <nav>
@@ -276,6 +319,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <li><a href="compare.html">Compare</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">◐ Theme</button>
   <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -283,6 +327,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 
 
 <div class="hero-hub">
+  <div class="hero-hub-bg"></div>
   <div class="hero-hub-inner">
     <div class="hub-eyebrow">Global climate data and accountability</div>
     <h1 class="hub-h1">Someone always <em>pays the bill.</em></h1>
@@ -299,6 +344,30 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   <div class="hub-cell"><div class="hub-num">124m</div><div class="hub-lab">People affected yearly</div></div>
   <div class="hub-cell"><div class="hub-num">$202bn</div><div class="hub-lab">Annual direct losses</div></div>
   <div class="hub-cell"><div class="hub-num">7 of 10</div><div class="hub-lab">Worst hit are low income</div></div>
+</div>
+
+<div class="live-ticker">
+  <div class="live-ticker-num" id="live-co2">0</div>
+  <div class="live-ticker-lab">Tonnes of CO2 emitted worldwide since you opened this page</div>
+</div>
+
+<div class="section" style="padding-bottom:0">
+  <div class="sec-eye">The reality on the ground</div>
+  <h2 class="sec-title">This is what the data looks like.</h2>
+  <div class="photo-grid">
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=600&q=75" alt="Wildfire smoke" loading="lazy">
+      <div class="photo-caption"><span class="cap-tag">Wildfires</span>Global fire outbreaks hit a record high in early 2026.</div>
+    </div>
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=75" alt="Flooding" loading="lazy">
+      <div class="photo-caption"><span class="cap-tag">Flooding</span>Now the foremost climate hazard worldwide.</div>
+    </div>
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=75" alt="Industrial emissions" loading="lazy">
+      <div class="photo-caption"><span class="cap-tag">Emissions</span>Carbon pollution reached record levels again in 2025.</div>
+    </div>
+  </div>
 </div>
 
 <div class="section">
@@ -343,6 +412,13 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
       <div class="card-cta">Read more</div>
     </a>
   </div>
+
+    <div class="share-row">
+      <a class="share-btn" href="https://wa.me/?text=Who%20caused%20the%20climate%20crisis%2C%20who%20is%20paying%20for%20it%2C%20and%20who%20is%20doing%20something%20about%20it.%20https%3A%2F%2Ftheclimatebill.github.io" target="_blank">Share on WhatsApp</a>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Someone%20always%20pays%20the%20bill.&url=https://theclimatebill.github.io" target="_blank">Share on X</a>
+      <a class="share-btn" href="mailto:?subject=The%20Climate%20Bill&body=Take%20a%20look%20at%20this%3A%20https%3A%2F%2Ftheclimatebill.github.io" target="_blank">Share by email</a>
+      <button class="share-btn" onclick="navigator.clipboard.writeText('https://theclimatebill.github.io');this.textContent='Link copied'">Copy link</button>
+    </div>
 </div>
 
 <footer>
@@ -361,5 +437,28 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <div class="dbadges"><span class="dbadge">NASA</span><span class="dbadge">NOAA</span><span class="dbadge">WMO</span><span class="dbadge">IPCC</span><span class="dbadge">IEA</span><span class="dbadge">World Bank</span></div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var ratePerSecond = 37800000000 / (365.25*24*3600); // 37.8 Gt/year in tonnes
+  var start = Date.now();
+  var el = document.getElementById('live-co2');
+  function tick(){
+    var elapsed = (Date.now()-start)/1000;
+    var total = Math.round(elapsed*ratePerSecond);
+    if(el) el.textContent = total.toLocaleString();
+  }
+  setInterval(tick, 200);
+  tick();
+})();
+</script>
+<script>
+function toggleTheme(){
+  var html=document.documentElement;
+  var isDark=html.getAttribute('data-theme')==='dark';
+  if(isDark){html.removeAttribute('data-theme');localStorage.setItem('cb-theme','light');}
+  else{html.setAttribute('data-theme','dark');localStorage.setItem('cb-theme','dark');}
+}
+</script>
 </body>
 </html>
