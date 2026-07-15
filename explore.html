@@ -13,11 +13,11 @@
 <meta property="og:title" content="Explore Emissions by Country | The Climate Bill">
 <meta property="og:description" content="An interactive world map of CO2 emissions. Switch between annual, historical since 1850, and per person views for every country.">
 <meta property="og:url" content="https://theclimatebill.github.io/explore.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://theclimatebill.github.io/social-explore.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Explore Emissions by Country | The Climate Bill">
 <meta name="twitter:description" content="An interactive world map of CO2 emissions. Switch between annual, historical since 1850, and per person views for every country.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1200&h=630&fit=crop">
+<meta name="twitter:image" content="https://theclimatebill.github.io/social-explore.png">
 <rect width='100' height='100' rx='18' fill='%23eaf3f9'/><circle cx='50' cy='50' r='26' fill='none' stroke='%233f8dc4' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23c9683f'/></svg>">
 <style>
 html[data-theme="dark"]{
@@ -297,6 +297,35 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 
 .nav-logo-mark{width:28px;height:28px;border-radius:7px;margin-right:8px;vertical-align:middle;display:inline-block}
 .nav-logo-row{display:flex;align-items:center}
+
+.breadcrumb{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:6px;padding-top:96px}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--sky-deep)}
+.dateline{font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.dateline .dot{width:4px;height:4px;border-radius:50%;background:var(--muted)}
+.page-actions{display:flex;gap:8px}
+.pa-btn{background:none;border:1px solid var(--line);border-radius:20px;padding:5px 12px;font-family:var(--mono);font-size:.65rem;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.pa-btn:hover{border-color:var(--sky)}
+.kf-box{background:var(--sky-light);border:1px solid #d7e8f3;border-radius:12px;padding:22px 24px;margin:26px 0 34px}
+html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
+.kf-label{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sky-deep);margin-bottom:12px}
+.kf-list{list-style:none}
+.kf-list li{position:relative;padding-left:20px;margin-bottom:9px;font-size:.88rem;line-height:1.6}
+.kf-list li::before{content:"→";position:absolute;left:0;color:var(--sky-deep);font-weight:700}
+.kf-list strong{color:var(--ink)}
+.related-section{padding:50px 32px;background:var(--surface);border-top:1px solid var(--line)}
+.related-inner{max-width:1160px;margin:0 auto}
+.related-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.rel-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px 20px;text-decoration:none;color:var(--ink);display:block;transition:border-color .15s,transform .15s}
+.rel-card:hover{border-color:var(--sky);transform:translateY(-2px)}
+.rel-icon{font-size:1.3rem;margin-bottom:8px;display:block}
+.rel-title{font-weight:600;font-size:.9rem;margin-bottom:4px}
+.rel-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+@media print{
+  nav,.hamburger,.theme-btn,.page-actions,.related-section,footer,.hero-hub,.ai-input-row,.calc-btn,.search-row{display:none !important}
+  body{background:#fff;color:#000}
+}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -334,7 +363,16 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 </nav>
 
 
-<div class="full-section" style="padding-top:120px">
+<div class="section" style="padding-bottom:0;max-width:1160px">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Explore</div>
+  <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>39 country profiles, 130+ mapped</span><span class="dot"></span>
+    <div class="page-actions">
+      <button class="pa-btn" onclick="window.print()">Print</button>
+      <button class="pa-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied'">Share</button>
+    </div>
+  </div>
+</div>
+<div class="full-section">
   <div class="inner">
     <div class="chapter">We are now in the Anthropocene, and humans are driving the change</div>
     <div class="sec-eye">Emissions by country</div>
@@ -355,6 +393,14 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
       <svg id="world-map" viewBox="0 0 960 500"></svg>
     </div>
     <div class="map-legend" id="map-legend"></div>
+    <div class="kf-box">
+      <div class="kf-label">Key findings</div>
+      <ul class="kf-list">
+        <li>The top three emitters, <strong>China, the United States and India</strong>, together produce over half of global CO2.</li>
+        <li>Ranked by historical responsibility instead, the <strong>United States alone accounts for 25%</strong> of all CO2 emitted since 1850.</li>
+        <li>A handful of state owned fossil fuel producers account for a disproportionate share of emissions since 1988.</li>
+      </ul>
+    </div>
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/x1SgmFa0r04" title="NASA: A Year in the Life of Earth's CO2" loading="lazy" allowfullscreen></iframe>
     </div>
@@ -388,6 +434,18 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   </div>
   <div class="hub-ctas" style="justify-content:flex-start;margin-top:24px">
     <a href="compare.html" class="btn-g">Compare two countries directly</a>
+  </div>
+</div>
+
+<div class="related-section">
+  <div class="related-inner">
+    <div class="related-label">Related</div>
+    <div class="related-grid">
+      <a href="impact.html" class="rel-card"><span class="rel-icon">🌡️</span><div class="rel-title">Impact data</div><div class="rel-desc">What the emissions above are actually doing to people and ecosystems.</div></a>
+      <a href="compare.html" class="rel-card"><span class="rel-icon">⚖️</span><div class="rel-title">Compare countries</div><div class="rel-desc">Put any two of these countries side by side directly.</div></a>
+      <a href="renewable.html" class="rel-card"><span class="rel-icon">☀️</span><div class="rel-title">Renewable energy</div><div class="rel-desc">How countries are responding to the numbers on this page.</div></a>
+      
+    </div>
   </div>
 </div>
 

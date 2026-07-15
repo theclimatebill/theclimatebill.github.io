@@ -13,11 +13,11 @@
 <meta property="og:title" content="Climate Impact Data | The Climate Bill">
 <meta property="og:description" content="What global warming is doing to life on Earth: heat, health, migration, wildlife and disasters, in numbers, with sources.">
 <meta property="og:url" content="https://theclimatebill.github.io/impact.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://theclimatebill.github.io/social-impact.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Climate Impact Data | The Climate Bill">
 <meta name="twitter:description" content="What global warming is doing to life on Earth: heat, health, migration, wildlife and disasters, in numbers, with sources.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=1200&h=630&fit=crop">
+<meta name="twitter:image" content="https://theclimatebill.github.io/social-impact.png">
 <rect width='100' height='100' rx='18' fill='%23eaf3f9'/><circle cx='50' cy='50' r='26' fill='none' stroke='%233f8dc4' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%23c9683f'/></svg>">
 <style>
 html[data-theme="dark"]{
@@ -297,6 +297,35 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 
 .nav-logo-mark{width:28px;height:28px;border-radius:7px;margin-right:8px;vertical-align:middle;display:inline-block}
 .nav-logo-row{display:flex;align-items:center}
+
+.breadcrumb{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:6px;padding-top:96px}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--sky-deep)}
+.dateline{font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.dateline .dot{width:4px;height:4px;border-radius:50%;background:var(--muted)}
+.page-actions{display:flex;gap:8px}
+.pa-btn{background:none;border:1px solid var(--line);border-radius:20px;padding:5px 12px;font-family:var(--mono);font-size:.65rem;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.pa-btn:hover{border-color:var(--sky)}
+.kf-box{background:var(--sky-light);border:1px solid #d7e8f3;border-radius:12px;padding:22px 24px;margin:26px 0 34px}
+html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
+.kf-label{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sky-deep);margin-bottom:12px}
+.kf-list{list-style:none}
+.kf-list li{position:relative;padding-left:20px;margin-bottom:9px;font-size:.88rem;line-height:1.6}
+.kf-list li::before{content:"→";position:absolute;left:0;color:var(--sky-deep);font-weight:700}
+.kf-list strong{color:var(--ink)}
+.related-section{padding:50px 32px;background:var(--surface);border-top:1px solid var(--line)}
+.related-inner{max-width:1160px;margin:0 auto}
+.related-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.rel-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px 20px;text-decoration:none;color:var(--ink);display:block;transition:border-color .15s,transform .15s}
+.rel-card:hover{border-color:var(--sky);transform:translateY(-2px)}
+.rel-icon{font-size:1.3rem;margin-bottom:8px;display:block}
+.rel-title{font-weight:600;font-size:.9rem;margin-bottom:4px}
+.rel-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+@media print{
+  nav,.hamburger,.theme-btn,.page-actions,.related-section,footer,.hero-hub,.ai-input-row,.calc-btn,.search-row{display:none !important}
+  body{background:#fff;color:#000}
+}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -334,7 +363,16 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 </nav>
 
 
-<div class="section" style="padding-top:120px">
+<div class="section" style="padding-bottom:0;max-width:1160px">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Impact Data</div>
+  <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>22 tracked indicators</span><span class="dot"></span>
+    <div class="page-actions">
+      <button class="pa-btn" onclick="window.print()">Print</button>
+      <button class="pa-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied'">Share</button>
+    </div>
+  </div>
+</div>
+<div class="section">
   <div class="chapter">Chapter, who pays the price</div>
   <div class="sec-eye">The measured impact</div>
   <h2 class="sec-title">What warming is doing to life on Earth.</h2>
@@ -343,6 +381,14 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   <div class="photo-card">
     <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=1200&q=75" alt="Drought affected land" loading="lazy">
     <div class="photo-caption"><span class="cap-tag">Sub Saharan drought</span>124 million more people faced food insecurity in 2023 due to droughts and heatwaves.</div>
+  </div>
+  <div class="kf-box">
+    <div class="kf-label">Key findings</div>
+    <ul class="kf-list">
+      <li>Heat now kills an estimated <strong>546,000 people a year</strong>, a figure up 23% since the 1990s.</li>
+      <li>Wildlife populations have fallen by <strong>73% on average since 1970</strong>, with Latin America's decline the steepest of any region.</li>
+      <li>Climate related disasters could displace up to <strong>216 million people within their own countries by 2050</strong>.</li>
+    </ul>
   </div>
   <div class="video-wrap">
     <iframe src="https://www.youtube.com/embed/L1AHQEqsPxQ" title="WHO: Climate Change and Health" loading="lazy" allowfullscreen></iframe>
@@ -400,6 +446,18 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   <h2 class="sec-title">A timeline of the bill.</h2>
   
   <div class="tl" id="tl-list"></div>
+</div>
+
+<div class="related-section">
+  <div class="related-inner">
+    <div class="related-label">Related</div>
+    <div class="related-grid">
+      <a href="explore.html" class="rel-card"><span class="rel-icon">🗺️</span><div class="rel-title">Emissions by country</div><div class="rel-desc">See which countries are driving the trends on this page.</div></a>
+      <a href="renewable.html" class="rel-card"><span class="rel-icon">☀️</span><div class="rel-title">Renewable energy</div><div class="rel-desc">The response side of the story.</div></a>
+      <a href="calculator.html" class="rel-card"><span class="rel-icon">🧮</span><div class="rel-title">Carbon calculator</div><div class="rel-desc">See where you personally sit against these numbers.</div></a>
+      
+    </div>
+  </div>
 </div>
 
 <footer>
