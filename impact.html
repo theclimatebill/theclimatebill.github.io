@@ -326,6 +326,27 @@ html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
   nav,.hamburger,.theme-btn,.page-actions,.related-section,footer,.hero-hub,.ai-input-row,.calc-btn,.search-row{display:none !important}
   body{background:#fff;color:#000}
 }
+
+.skip-link{position:absolute;top:-100px;left:10px;background:var(--sky-deep);color:#fff;padding:10px 18px;border-radius:6px;font-family:var(--sans);font-size:.85rem;font-weight:600;text-decoration:none;z-index:999;transition:top .15s}
+.skip-link:focus{top:10px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.card:focus-visible,.echip:focus-visible,.cmp-chip:focus-visible,.itab:focus-visible,.mtog:focus-visible{outline:3px solid var(--sky-deep);outline-offset:2px;border-radius:4px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skeleton{background:linear-gradient(90deg,var(--surface2) 25%,var(--surface) 50%,var(--surface2) 75%);background-size:200% 100%;animation:skeleton-pulse 1.4s ease-in-out infinite;border-radius:8px}
+@keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.map-loading{display:flex;align-items:center;justify-content:center;height:400px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.chart-loading{height:190px}
+
+.chart-card{position:relative}
+.chart-loading{position:absolute;inset:0;margin:0;border-radius:12px}
+
+.video-thumb{position:relative;padding-bottom:52%;height:0;overflow:hidden;border-radius:12px;margin:24px 0;border:1px solid var(--line);cursor:pointer;background-size:cover;background-position:center}
+.video-thumb::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25);transition:background .2s}
+.video-thumb:hover::after{background:rgba(0,0,0,.4)}
+.video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .2s}
+.video-thumb:hover .video-play{transform:translate(-50%,-50%) scale(1.08)}
+.video-play svg{margin-left:4px}
+.video-fallback{font-size:.74rem;margin-top:8px}
+.video-fallback a{color:var(--sky-deep);text-decoration:none}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -341,8 +362,44 @@ html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
   gtag('js', new Date());
   gtag('config', 'G-EY6FCF42ZC');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Climate Impact Indicators",
+  "description": "Data on heat mortality, health, migration, wildlife decline, and disaster losses caused by climate change.",
+  "url": "https://theclimatebill.github.io/impact.html",
+  "keywords": ["climate impact", "heat deaths", "climate migration", "wildlife decline", "disaster losses"],
+  "creator": {
+    "@type": "Organization",
+    "name": "The Climate Bill",
+    "url": "https://theclimatebill.github.io"
+  },
+  "license": "https://theclimatebill.github.io/about.html",
+  "isAccessibleForFree": true,
+  "temporalCoverage": "1990/2023",
+  "distribution": {
+    "@type": "DataDownload",
+    "encodingFormat": "text/html",
+    "contentUrl": "https://theclimatebill.github.io/impact.html"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://theclimatebill.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "Impact Data", "item": "https://theclimatebill.github.io/impact.html"}
+  ]
+}
+</script>
+
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <nav>
   <div>
     <a href="index.html" style="text-decoration:none"><div class="nav-logo-row"><img src="logo-192.png" alt="The Climate Bill logo" class="nav-logo-mark"><div class="nav-logo">The Climate<span>Bill</span></div></div></a>
@@ -363,7 +420,7 @@ html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
 </nav>
 
 
-<div class="section" style="padding-bottom:0;max-width:1160px">
+<div class="section" id="main-content" tabindex="-1" style="padding-bottom:0;max-width:1160px">
   <div class="breadcrumb"><a href="index.html">Home</a> / Impact Data</div>
   <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>22 tracked indicators</span><span class="dot"></span>
     <div class="page-actions">
@@ -390,20 +447,21 @@ html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
       <li>Climate related disasters could displace up to <strong>216 million people within their own countries by 2050</strong>.</li>
     </ul>
   </div>
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/L1AHQEqsPxQ" title="WHO: Climate Change and Health" loading="lazy" allowfullscreen></iframe>
+  <div class="video-thumb" id="video-L1AHQEqsPxQ" style="background-image:url('https://img.youtube.com/vi/L1AHQEqsPxQ/hqdefault.jpg')" onclick="loadVideo('L1AHQEqsPxQ')" role="button" tabindex="0" aria-label="Play video: WHO Climate Change and Health" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadVideo('L1AHQEqsPxQ');}">
+    <div class="video-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2b2620"><path d="M8 5v14l11-7z"/></svg></div>
   </div>
+  <p class="video-fallback">Video not loading? <a href="https://www.youtube.com/watch?v=L1AHQEqsPxQ" target="_blank">Watch directly on YouTube</a></p>
   <p class="video-cap">The World Health Organization on how a warming climate is already affecting human health worldwide, from heat mortality to the spread of infectious disease. Source: <a href="https://www.who.int/news-room/fact-sheets/detail/climate-change-and-health" target="_blank">WHO</a></p>
-  <div class="impact-tabs" id="impact-tabs"></div>
+  <div class="impact-tabs" id="impact-tabs" role="tablist" aria-label="Impact category"></div>
   <div class="big-stats" id="big-stats"></div>
 
   <div class="chart-grid" style="margin-top:30px">
-    <div class="chart-card"><div class="chart-title">Global temperature rise</div><div class="chart-sub">Degrees C above 1850 to 1900</div><svg id="c-temp" viewBox="0 0 340 190" style="width:100%"></svg><div class="chart-src">Source: <a href="https://data.giss.nasa.gov/gistemp/" target="_blank">NASA GISTEMP</a></div></div>
-    <div class="chart-card"><div class="chart-title">Ocean heat content</div><div class="chart-sub">Zettajoules above 1955 to 2006 average</div><svg id="c-ocean" viewBox="0 0 340 190" style="width:100%"></svg><div class="chart-src">Source: <a href="https://www.ncei.noaa.gov/access/global-ocean-heat-content/" target="_blank">NOAA</a></div></div>
-    <div class="chart-card"><div class="chart-title">Coral reefs hit by bleaching stress</div><div class="chart-sub">Percent of world reef area</div><svg id="c-coral" viewBox="0 0 340 190" style="width:100%"></svg><div class="chart-src">Source: <a href="https://coralreefwatch.noaa.gov" target="_blank">NOAA Coral Reef Watch</a></div></div>
-    <div class="chart-card"><div class="chart-title">Wildlife population decline</div><div class="chart-sub">Living Planet Index since 1970</div><svg id="c-wildlife" viewBox="0 0 340 190" style="width:100%"></svg><div class="chart-src">Source: <a href="https://www.zsl.org/what-we-do/projects/living-planet-index" target="_blank">ZSL and WWF</a></div></div>
-    <div class="chart-card"><div class="chart-title">Disaster displacement</div><div class="chart-sub">Millions of new displacements per year</div><svg id="c-migration" viewBox="0 0 340 190" style="width:100%"></svg><div class="chart-src">Source: <a href="https://www.internal-displacement.org" target="_blank">IDMC</a></div></div>
-    <div class="chart-card"><div class="chart-title">Heat related deaths per year</div><div class="chart-sub">Thousands of deaths, global average</div><svg id="c-deaths" viewBox="0 0 340 190" style="width:100%"></svg><div class="chart-src">Source: <a href="https://www.who.int" target="_blank">WHO and Lancet Countdown</a></div></div>
+    <div class="chart-card"><div class="chart-title">Global temperature rise</div><div class="chart-sub">Degrees C above 1850 to 1900</div><svg id="c-temp" viewBox="0 0 340 190" style="width:100%" role="img" aria-label="Line chart of global temperature rise from 1900 to 2024"></svg><div class="chart-loading skeleton" id="c-temp-skel"></div><div class="chart-src">Source: <a href="https://data.giss.nasa.gov/gistemp/" target="_blank">NASA GISTEMP</a></div></div>
+    <div class="chart-card"><div class="chart-title">Ocean heat content</div><div class="chart-sub">Zettajoules above 1955 to 2006 average</div><svg id="c-ocean" viewBox="0 0 340 190" style="width:100%" role="img" aria-label="Line chart of ocean heat content since 1960"></svg><div class="chart-loading skeleton" id="c-ocean-skel"></div><div class="chart-src">Source: <a href="https://www.ncei.noaa.gov/access/global-ocean-heat-content/" target="_blank">NOAA</a></div></div>
+    <div class="chart-card"><div class="chart-title">Coral reefs hit by bleaching stress</div><div class="chart-sub">Percent of world reef area</div><svg id="c-coral" viewBox="0 0 340 190" style="width:100%" role="img" aria-label="Bar chart of coral reef bleaching events since 1998"></svg><div class="chart-loading skeleton" id="c-coral-skel"></div><div class="chart-src">Source: <a href="https://coralreefwatch.noaa.gov" target="_blank">NOAA Coral Reef Watch</a></div></div>
+    <div class="chart-card"><div class="chart-title">Wildlife population decline</div><div class="chart-sub">Living Planet Index since 1970</div><svg id="c-wildlife" viewBox="0 0 340 190" style="width:100%" role="img" aria-label="Line chart of wildlife population decline since 1970"></svg><div class="chart-loading skeleton" id="c-wildlife-skel"></div><div class="chart-src">Source: <a href="https://www.zsl.org/what-we-do/projects/living-planet-index" target="_blank">ZSL and WWF</a></div></div>
+    <div class="chart-card"><div class="chart-title">Disaster displacement</div><div class="chart-sub">Millions of new displacements per year</div><svg id="c-migration" viewBox="0 0 340 190" style="width:100%" role="img" aria-label="Bar chart of disaster displacement by year"></svg><div class="chart-loading skeleton" id="c-migration-skel"></div><div class="chart-src">Source: <a href="https://www.internal-displacement.org" target="_blank">IDMC</a></div></div>
+    <div class="chart-card"><div class="chart-title">Heat related deaths per year</div><div class="chart-sub">Thousands of deaths, global average</div><svg id="c-deaths" viewBox="0 0 340 190" style="width:100%" role="img" aria-label="Bar chart of heat related deaths per decade"></svg><div class="chart-loading skeleton" id="c-deaths-skel"></div><div class="chart-src">Source: <a href="https://www.who.int" target="_blank">WHO and Lancet Countdown</a></div></div>
   </div>
 
   <div class="dtable-wrap">
@@ -558,7 +616,7 @@ let activeTab="heat";
 
 function renderTabs(){
  document.getElementById("impact-tabs").innerHTML=IMPACT_TABS.map(function(t){
-  return '<span class="itab'+(t[0]===activeTab?' active':'')+'" onclick="setTab(\''+t[0]+'\')">'+t[1]+'</span>';}).join("");}
+  return '<span class="itab'+(t[0]===activeTab?' active':'')+'" role="tab" tabindex="0" aria-selected="'+(t[0]===activeTab)+'" onclick="setTab(\''+t[0]+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();setTab(\''+t[0]+'\');}">'+t[1]+'</span>';}).join("");}
 function renderStats(){
  document.getElementById("big-stats").innerHTML=IMPACT_DATA[activeTab].map(function(s){
   return '<div class="bstat '+s.c+'"><div class="bs-num">'+s.n+'</div><div class="bs-label">'+s.l+'</div><div class="bs-desc">'+s.d+'</div><div class="bs-src"><a href="'+s.u+'" target="_blank">'+s.s+'</a></div></div>';}).join("");}
@@ -592,14 +650,15 @@ function renderDTable(){
  document.getElementById("dtable-rows").innerHTML=DTABLE.map(function(r){
   return '<div class="dtable-row"><div><div class="dt-name">'+r.n+'</div><div class="dt-cat">'+r.c+'</div></div><div class="dt-fig">'+r.f+'</div><div class="dt-chg">'+r.g+'</div><div class="dt-src"><a href="'+r.u+'" target="_blank">'+r.s+'</a></div></div>';}).join("");}
 
+function removeChartSkeleton(id){const el=document.getElementById(id+"-skel");if(el)el.remove();}
 function buildImpacts(){
  renderTabs();renderStats();renderDTable();
- lineChart("c-temp",["1900","1940","1970","1990","2000","2010","2016","2020","2023","2024"],[-0.1,0.15,0.2,0.55,0.7,0.95,1.25,1.3,1.45,1.55],"#e05a2b",1.7,-0.2);
- lineChart("c-ocean",["1960","1980","1995","2005","2015","2020","2024"],[-20,0,60,130,230,300,380],"#5bc8d4",420,-40);
- barChartSVG("c-coral",["1998","2010","2016","2025"],[21,37,68,84],"#5bc8d4");
- lineChart("c-wildlife",["1970","1980","1990","2000","2010","2020"],[0,-15,-32,-48,-62,-73],"#a8d458",5,-80);
- barChartSVG("c-migration",["2016","2019","2021","2022","2023"],[24,24,22,32.6,26],"#f0a030");
- barChartSVG("c-deaths",["1990s","2000s","2010s","2012-21"],[420,460,510,546],"#e05a2b");
+ lineChart("c-temp",["1900","1940","1970","1990","2000","2010","2016","2020","2023","2024"],[-0.1,0.15,0.2,0.55,0.7,0.95,1.25,1.3,1.45,1.55],"#e05a2b",1.7,-0.2);removeChartSkeleton("c-temp");
+ lineChart("c-ocean",["1960","1980","1995","2005","2015","2020","2024"],[-20,0,60,130,230,300,380],"#5bc8d4",420,-40);removeChartSkeleton("c-ocean");
+ barChartSVG("c-coral",["1998","2010","2016","2025"],[21,37,68,84],"#5bc8d4");removeChartSkeleton("c-coral");
+ lineChart("c-wildlife",["1970","1980","1990","2000","2010","2020"],[0,-15,-32,-48,-62,-73],"#a8d458",5,-80);removeChartSkeleton("c-wildlife");
+ barChartSVG("c-migration",["2016","2019","2021","2022","2023"],[24,24,22,32.6,26],"#f0a030");removeChartSkeleton("c-migration");
+ barChartSVG("c-deaths",["1990s","2000s","2010s","2012-21"],[420,460,510,546],"#e05a2b");removeChartSkeleton("c-deaths");
 }
 
 
@@ -632,6 +691,13 @@ function toggleTheme(){
   var isDark=html.getAttribute('data-theme')==='dark';
   if(isDark){html.removeAttribute('data-theme');localStorage.setItem('cb-theme','light');}
   else{html.setAttribute('data-theme','dark');localStorage.setItem('cb-theme','dark');}
+}
+</script>
+<script>
+function loadVideo(id){
+  const wrap=document.getElementById('video-'+id);
+  if(!wrap)return;
+  wrap.outerHTML='<div class="video-wrap"><iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1" title="YouTube video" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
 }
 </script>
 </body>
