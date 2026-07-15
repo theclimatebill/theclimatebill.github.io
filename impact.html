@@ -330,7 +330,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   <div class="chapter">Chapter, who pays the price</div>
   <div class="sec-eye">The measured impact</div>
   <h2 class="sec-title">What warming is doing to life on Earth.</h2>
-  <p class="sec-sub">Not stories. Numbers. Drawn from the WHO, the Lancet Countdown, the World Bank, NOAA, the IUCN, WWF, the IPCC, the IDMC and the World Economic Forum.</p>
+  
 
   <div class="photo-card">
     <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=1200&q=75" alt="Drought affected land" loading="lazy">
@@ -353,7 +353,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   </div>
 
   <div class="dtable-wrap">
-    <div class="dtable-head"><span>Indicator</span><span>Latest figure</span><span>Change</span><span>Source</span></div>
+    <div class="dtable-head"><span>Indicator</span><span>Latest figure</span><span>Comparison</span><span>Source</span></div>
     <div id="dtable-rows"></div>
   </div>
 </div>
@@ -364,7 +364,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   <div class="chapter">The bill</div>
   <div class="sec-eye">Who is actually paying</div>
   <h2 class="sec-title">Agreed. Not paid.</h2>
-  <p class="sec-sub">After thirty years of argument, the world created a fund to compensate countries for climate damage they did not cause.</p>
+  
   <div class="ld-grid">
     <div class="ld-card">
       <div class="ld-big ld-pledge">$822m</div>
@@ -390,7 +390,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 <div class="section" id="timeline">
   <div class="sec-eye">How we got here</div>
   <h2 class="sec-title">A timeline of the bill.</h2>
-  <p class="sec-sub">The science was settled long before the politics.</p>
+  
   <div class="tl" id="tl-list"></div>
 </div>
 
@@ -499,28 +499,28 @@ function renderStats(){
 function setTab(t){activeTab=t;renderTabs();renderStats();}
 
 const DTABLE=[
- {n:"Global surface temperature",c:"Warming",f:"1.55°C",g:"vs pre industrial",s:"WMO",u:"https://wmo.int"},
- {n:"Ocean heat content",c:"Warming",f:"Record high",g:"8 record years running",s:"WMO and NOAA",u:"https://www.ncei.noaa.gov/access/global-ocean-heat-content/"},
- {n:"Rate of ocean warming 2005 to 2024",c:"Warming",f:"2x faster",g:"vs 1960 to 2005",s:"WMO",u:"https://earth.org/scientists-confirm-largest-coral-bleaching-event-on-record-affecting-nearly-84-of-worlds-reefs/"},
- {n:"Heat related deaths per year",c:"Health",f:"546,000",g:"+23% since 1990s",s:"Lancet Countdown",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
- {n:"Wildfire smoke deaths, 2024",c:"Health",f:"154,000",g:"+36% on baseline",s:"Lancet Countdown",u:"https://www.sheltercluster.org/extreme-heat-working-group/documents/annual-heat-related-deaths-surge-546-000-last-decade-due"},
- {n:"Fossil fuel air pollution deaths",c:"Health",f:"2.5 million",g:"per year",s:"Lancet Countdown",u:"https://www.usnews.com/news/health-news/articles/2025-10-29/climate-change-causing-more-deaths-from-heat-wildfire-smoke"},
- {n:"Labour hours lost to heat, 2024",c:"Economy",f:"640 billion",g:"$1.09tn in losses",s:"WHO",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
- {n:"Extra food insecure people",c:"Food",f:"124 million",g:"vs 1981 to 2010",s:"WHO",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
- {n:"Projected climate migrants by 2050",c:"Migration",f:"216 million",g:"internal movement",s:"World Bank",u:"https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"},
- {n:"Disaster displacements, 2022",c:"Migration",f:"32.6 million",g:"exceeds conflict",s:"IDMC",u:"https://www.internal-displacement.org"},
- {n:"Weather share of disaster displacement",c:"Migration",f:"98%",g:"not geophysical",s:"IDMC",u:"https://www.internal-displacement.org"},
- {n:"Living Planet Index decline",c:"Wildlife",f:"73%",g:"1970 to 2020",s:"WWF and ZSL",u:"https://www.zsl.org/what-we-do/projects/living-planet-index"},
- {n:"Latin America wildlife decline",c:"Wildlife",f:"95%",g:"steepest region",s:"WWF",u:"https://www.wwf.org.uk/press-release/wwfs-living-planet-report-shows-73-decline"},
- {n:"Africa wildlife decline",c:"Wildlife",f:"76%",g:"since 1970",s:"WWF",u:"https://www.zsl.org/what-we-do/projects/living-planet-index"},
- {n:"Coral reefs hit by bleaching stress",c:"Ocean",f:"84%",g:"vs 21% in 1998",s:"NOAA and ICRI",u:"https://coralreefwatch.noaa.gov/satellite/research/coral_bleaching_report.php"},
- {n:"Coral species facing extinction",c:"Ocean",f:"44%",g:"was 33% in 2008",s:"IUCN Red List",u:"https://iucn.org/press-release/202411/over-40-coral-species-face-extinction-iucn-red-list"},
- {n:"Decline in wild mammals",c:"Wildlife",f:"85%",g:"since human expansion",s:"Our World in Data",u:"https://ourworldindata.org/biodiversity"},
- {n:"People affected by disasters per year",c:"Disasters",f:"124 million",g:"+75% in a decade",s:"UN COP30",u:"https://www.forbes.com/sites/dianneplummer/2025/12/18/the-5-climate-disasters-that-defined-a-breaking-point-in-2025/"},
- {n:"Direct disaster losses per year",c:"Economy",f:"$202 billion",g:"$2.3tn with cascades",s:"UN",u:"https://www.forbes.com/sites/dianneplummer/2025/12/18/the-5-climate-disasters-that-defined-a-breaking-point-in-2025/"},
- {n:"US billion dollar disasters per year",c:"Disasters",f:"20",g:"was 3 in the 1980s",s:"NOAA NCEI",u:"https://www.climatecentral.org/climate-matters/2025-in-review"},
- {n:"Amazon forest burned, 2024",c:"Nature",f:"20m hectares",g:"largest since 2005",s:"Germanwatch",u:"https://www.germanwatch.org/en/cri"},
- {n:"Countries most affected that are low income",c:"Equity",f:"7 of 10",g:"in 2024",s:"Germanwatch CRI",u:"https://www.germanwatch.org/en/cri"}
+ {n:"Global surface temperature",c:"Warming",f:"1.55°C",g:"Above the 1850 to 1900 average",s:"WMO",u:"https://wmo.int"},
+ {n:"Ocean heat content",c:"Warming",f:"Record high",g:"Eighth consecutive record year",s:"WMO and NOAA",u:"https://www.ncei.noaa.gov/access/global-ocean-heat-content/"},
+ {n:"Rate of ocean warming, 2005 to 2024",c:"Warming",f:"2x faster",g:"Than the 1960 to 2005 rate",s:"WMO",u:"https://earth.org/scientists-confirm-largest-coral-bleaching-event-on-record-affecting-nearly-84-of-worlds-reefs/"},
+ {n:"Heat related deaths per year",c:"Health",f:"546,000",g:"Up 23% since the 1990s",s:"Lancet Countdown",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
+ {n:"Wildfire smoke deaths, 2024",c:"Health",f:"154,000",g:"Up 36% on the 2003 to 2012 average",s:"Lancet Countdown",u:"https://www.sheltercluster.org/extreme-heat-working-group/documents/annual-heat-related-deaths-surge-546-000-last-decade-due"},
+ {n:"Fossil fuel air pollution deaths",c:"Health",f:"2.5 million",g:"Latest annual estimate",s:"Lancet Countdown",u:"https://www.usnews.com/news/health-news/articles/2025-10-29/climate-change-causing-more-deaths-from-heat-wildfire-smoke"},
+ {n:"Labour hours lost to heat, 2024",c:"Economy",f:"640 billion",g:"$1.09tn in lost income",s:"WHO",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
+ {n:"Extra food insecure people",c:"Food",f:"124 million",g:"Above the 1981 to 2010 average",s:"WHO",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
+ {n:"Projected climate migrants by 2050",c:"Migration",f:"216 million",g:"World Bank central projection",s:"World Bank",u:"https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"},
+ {n:"Disaster displacements, 2022",c:"Migration",f:"32.6 million",g:"Higher than conflict displacement",s:"IDMC",u:"https://www.internal-displacement.org"},
+ {n:"Weather share of disaster displacement",c:"Migration",f:"98%",g:"Not from earthquakes or volcanoes",s:"IDMC",u:"https://www.internal-displacement.org"},
+ {n:"Living Planet Index decline",c:"Wildlife",f:"73%",g:"Average fall, 1970 to 2020",s:"WWF and ZSL",u:"https://www.zsl.org/what-we-do/projects/living-planet-index"},
+ {n:"Latin America wildlife decline",c:"Wildlife",f:"95%",g:"The steepest of any region",s:"WWF",u:"https://www.wwf.org.uk/press-release/wwfs-living-planet-report-shows-73-decline"},
+ {n:"Africa wildlife decline",c:"Wildlife",f:"76%",g:"Average fall, 1970 to 2020",s:"WWF",u:"https://www.zsl.org/what-we-do/projects/living-planet-index"},
+ {n:"Coral reefs hit by bleaching stress",c:"Ocean",f:"84%",g:"Up from 21% in the 1998 event",s:"NOAA and ICRI",u:"https://coralreefwatch.noaa.gov/satellite/research/coral_bleaching_report.php"},
+ {n:"Coral species facing extinction",c:"Ocean",f:"44%",g:"Up from 33% in 2008",s:"IUCN Red List",u:"https://iucn.org/press-release/202411/over-40-coral-species-face-extinction-iucn-red-list"},
+ {n:"Decline in wild mammals",c:"Wildlife",f:"85%",g:"Since large scale human expansion",s:"Our World in Data",u:"https://ourworldindata.org/biodiversity"},
+ {n:"People affected by disasters per year",c:"Disasters",f:"124 million",g:"Up 75% over the past decade",s:"UN COP30",u:"https://www.forbes.com/sites/dianneplummer/2025/12/18/the-5-climate-disasters-that-defined-a-breaking-point-in-2025/"},
+ {n:"Direct disaster losses per year",c:"Economy",f:"$202 billion",g:"$2.3tn including cascading impacts",s:"UN",u:"https://www.forbes.com/sites/dianneplummer/2025/12/18/the-5-climate-disasters-that-defined-a-breaking-point-in-2025/"},
+ {n:"US billion dollar disasters per year",c:"Disasters",f:"20",g:"Up from 3 a year in the 1980s",s:"NOAA NCEI",u:"https://www.climatecentral.org/climate-matters/2025-in-review"},
+ {n:"Amazon forest burned, 2024",c:"Nature",f:"20m hectares",g:"The largest area since 2005",s:"Germanwatch",u:"https://www.germanwatch.org/en/cri"},
+ {n:"Most affected countries that are low income",c:"Equity",f:"7 of 10",g:"Germanwatch 2024 assessment",s:"Germanwatch CRI",u:"https://www.germanwatch.org/en/cri"}
 ];
 function renderDTable(){
  document.getElementById("dtable-rows").innerHTML=DTABLE.map(function(r){

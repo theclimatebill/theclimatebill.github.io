@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://theclimatebill.github.io/sitemap.xml

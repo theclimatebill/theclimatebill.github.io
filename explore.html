@@ -331,7 +331,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
     <div class="chapter">We are now in the Anthropocene, and humans are driving the change</div>
     <div class="sec-eye">Emissions by country</div>
     <h2 class="sec-title">Every country. Three ways to see it.</h2>
-    <p class="sec-sub">Colour shows CO2 emissions. Switch views and the map inverts: annual shows who is polluting now, cumulative shows who built the problem since 1850, per person shows how much each citizen actually burns.</p>
+    
     <div class="photo-card">
       <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=75" alt="Industrial skyline" loading="lazy">
       <div class="photo-caption"><span class="cap-tag">Global emissions</span>36.8 gigatonnes of CO2 were released in 2023, the highest ever recorded.</div>
@@ -360,7 +360,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
       <div class="rp-head"><span class="rp-label">Country Profile</span></div>
       <div class="rp-body" id="country-result-body"></div>
     </div>
-    <p style="margin-top:14px;font-size:.72rem;color:var(--muted);font-family:var(--mono);line-height:1.7">Sources: <a href="https://globalcarbonbudget.org" target="_blank" style="color:var(--sky-deep);text-decoration:none">Global Carbon Budget</a> · <a href="https://ourworldindata.org/co2-emissions" target="_blank" style="color:var(--sky-deep);text-decoration:none">Our World in Data</a> · <a href="https://ember-climate.org/data/" target="_blank" style="color:var(--sky-deep);text-decoration:none">Ember</a> · <a href="https://www.germanwatch.org/en/cri" target="_blank" style="color:var(--sky-deep);text-decoration:none">Germanwatch CRI</a></p>
+    
   </div>
 </div>
 
@@ -369,7 +369,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
 <div class="section">
   <div class="sec-eye">Another way to see responsibility</div>
   <h2 class="sec-title">It is not only countries.</h2>
-  <p class="sec-sub">A small number of fossil fuel producers, most of them state owned, account for a very large share of global industrial emissions since 1988.</p>
+  
   <div class="resp-grid" style="grid-template-columns:1fr">
     <div class="resp-card">
       <div class="chart-title">Top producers, share of emissions since 1988</div>
@@ -486,7 +486,7 @@ function renderToggle(){
  document.getElementById("map-toggle").innerHTML=Object.keys(MAP_VIEWS).map(function(k){
   return '<span class="mtog'+(k===mapView?' active':'')+'" onclick="setMapView(\''+k+'\')">'+MAP_VIEWS[k].label+'</span>';}).join("");
  document.getElementById("toggle-note").innerHTML=MAP_VIEWS[mapView].note;
- document.getElementById("map-legend").innerHTML='<span style="font-family:var(--mono);font-size:.66rem;color:var(--mist);margin-right:4px">'+MAP_VIEWS[mapView].unit+':</span>'+
+ document.getElementById("map-legend").innerHTML='<span style="font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-right:4px">'+MAP_VIEWS[mapView].unit+':</span>'+
   MAP_VIEWS[mapView].legend.map(function(l){return '<div class="leg-item"><div class="leg-swatch" style="background:'+l[0]+'"></div>'+l[1]+'</div>';}).join("");}
 function setMapView(v){
  mapView=v;renderToggle();
@@ -512,20 +512,20 @@ function buildChips(){document.getElementById("explore-chips").innerHTML=CHIPS.m
  return '<div class="echip" onclick="showCountry(\''+k+'\')"><span class="ef">'+d.f+'</span><div><div class="en">'+d.n+'</div><div class="eco">'+d.gt+' Gt</div></div></div>';}).join("");}
 
 function profileHTML(d){
- const vc=(d.v==="Extreme"||d.v==="Very High")?"var(--ember)":d.v==="High"?"var(--heat)":"var(--acid)";
+ const vc=(d.v==="Extreme"||d.v==="Very High")?"var(--sky-deep)":d.v==="High"?"var(--clay)":"var(--moss)";
  const vcl=d.vd==="leading"?"v-leading":d.vd==="progress"?"v-progress":"v-behind";
  const vt=d.vd==="leading"?"Among the leaders":d.vd==="progress"?"Progress, but not yet enough":"Falling behind";
  return '<p style="font-size:1rem;font-weight:600;margin-bottom:14px">'+d.f+' '+d.n+'</p>'+
  '<div class="cp-grid">'+
  '<div class="cp-cell"><div class="cp-label">Annual CO2</div><div class="cp-val">'+d.gt+' Gt</div><div class="cp-sub">'+d.sh+'% of global</div></div>'+
- '<div class="cp-cell"><div class="cp-label">Historical share</div><div class="cp-val" style="color:var(--heat)">'+d.hi+'%</div><div class="cp-sub">since 1850</div></div>'+
+ '<div class="cp-cell"><div class="cp-label">Historical share</div><div class="cp-val" style="color:var(--clay)">'+d.hi+'%</div><div class="cp-sub">since 1850</div></div>'+
  '<div class="cp-cell"><div class="cp-label">Vulnerability</div><div class="cp-val" style="color:'+vc+';font-size:.95rem">'+d.v+'</div><div class="cp-sub">climate risk level</div></div>'+
  '<div class="cp-cell"><div class="cp-label">Economic losses</div><div class="cp-val" style="font-size:.9rem">'+d.loss+'</div><div class="cp-sub">estimated per year</div></div>'+
- '<div class="cp-cell"><div class="cp-label">Renewables</div><div class="cp-val" style="color:var(--acid)">'+d.re+'%</div><div class="cp-sub">of electricity</div></div>'+
+ '<div class="cp-cell"><div class="cp-label">Renewables</div><div class="cp-val" style="color:var(--moss)">'+d.re+'%</div><div class="cp-sub">of electricity</div></div>'+
  '</div><div class="cp-note">'+d.a+'</div>'+
  '<div class="cp-action"><div class="cp-action-label">Climate target</div>'+d.tg+'</div>'+
  '<div><span class="cp-verdict '+vcl+'">'+vt+'</span></div>'+
- '<p style="font-family:var(--mono);font-size:.64rem;color:var(--mist);margin-top:12px">Sources: <a href="https://ourworldindata.org/co2-emissions" target="_blank" style="color:var(--ember);text-decoration:none">Our World in Data</a> · <a href="https://ember-climate.org/data/" target="_blank" style="color:var(--ember);text-decoration:none">Ember</a> · <a href="https://climateactiontracker.org" target="_blank" style="color:var(--ember);text-decoration:none">Climate Action Tracker</a> · <a href="https://www.germanwatch.org/en/cri" target="_blank" style="color:var(--ember);text-decoration:none">Germanwatch CRI</a></p>';}
+;}
 
 function showPanel(html){
  document.getElementById("country-result-body").innerHTML=html;
@@ -537,7 +537,7 @@ function basicPanel(name,gt){
  return '<p style="font-weight:600;margin-bottom:10px">'+name+'</p><div class="cp-grid" style="grid-template-columns:1fr 1fr">'+
  '<div class="cp-cell"><div class="cp-label">Annual CO2</div><div class="cp-val">'+(gt>=0.01?gt+' Gt':(gt*1000).toFixed(1)+' Mt')+'</div></div>'+
  '<div class="cp-cell"><div class="cp-label">Share of global</div><div class="cp-val">'+(gt/36.8*100).toFixed(2)+'%</div></div></div>'+
- '<p style="color:var(--mist);font-size:.85rem">Emissions from the <a href="https://globalcarbonbudget.org" target="_blank" style="color:var(--ember)">Global Carbon Budget</a>. A full profile for this country is coming soon.</p>';}
+ '<p style="color:var(--muted);font-size:.85rem">Emissions from the <a href="https://globalcarbonbudget.org" target="_blank" style="color:var(--sky-deep)">Global Carbon Budget</a>. A full profile for this country is coming soon.</p>';}
 
 function handleSearch(){
  let q=document.getElementById("searchInput").value.trim().toLowerCase();
@@ -547,7 +547,7 @@ function handleSearch(){
  if(k){showCountry(k);return;}
  const e=Object.values(ID_MAP).find(x=>x[0].toLowerCase().includes(q));
  if(e){showPanel(basicPanel(e[0],e[1]));return;}
- showPanel('<p style="color:var(--mist)">No data found for "'+q+'". Try another spelling, or select a country from the list above.</p>');}
+ showPanel('<p style="color:var(--muted)">No data found for "'+q+'". Try another spelling, or select a country from the list above.</p>');}
 document.getElementById("searchInput").addEventListener("keydown",function(e){if(e.key==="Enter")handleSearch();});
 
 function buildMap(){
