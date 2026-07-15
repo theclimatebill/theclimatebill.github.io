@@ -370,12 +370,13 @@ html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
     <p class="sec-sub">Country emissions data comparison.</p>
     <div class="cmp-presets" id="cmp-presets"></div>
     <div class="cmp-picker">
-      <select class="cmp-sel" id="cmpA" onchange="renderCompare();saveCmpChoice()"></select>
+      <select class="cmp-sel" id="cmpA" onchange="renderCompare();saveCmpChoice();updateUrlParams()"></select>
       <span class="cmp-vs">versus</span>
-      <select class="cmp-sel" id="cmpB" onchange="renderCompare();saveCmpChoice()"></select>
+      <select class="cmp-sel" id="cmpB" onchange="renderCompare();saveCmpChoice();updateUrlParams()"></select>
     </div>
     <div class="cmp-board" id="cmp-board"></div>
     <div class="cmp-verdict" id="cmp-verdict"></div>
+    <button class="pa-btn" id="shareLinkBtn" onclick="copyCompareLink()" style="margin-top:14px">Copy link to this comparison</button>
   </div>
 </div>
 
@@ -411,6 +412,10 @@ html[data-theme="dark"] .kf-box{background:#1c2a33;border-color:#2a3d47}
 <script>
 /* ============ COUNTRY COMPARISON ============ */
 const CMP={
+ "eu":{f:"🇪🇺",n:"European Union (27)",gt:2.6,hist:22,pop:449,pc:5.8,re:45,loss:"0.2% GDP",lossN:0.2,isBloc:true},
+ "g7":{f:"🌐",n:"G7 nations",gt:9.2,hist:47,pop:770,pc:11.9,re:32,loss:"0.3% GDP",lossN:0.3,isBloc:true},
+ "ssa":{f:"🌍",n:"Sub Saharan Africa",gt:0.9,hist:1,pop:1230,pc:0.7,re:60,loss:"2 to 4% GDP",lossN:3,isBloc:true},
+ "g77":{f:"🌏",n:"G77 developing nations",gt:19.8,hist:26,pop:6800,pc:2.9,re:29,loss:"1.5 to 3% GDP",lossN:2.2,isBloc:true},
  "usa":{f:"🇺🇸",n:"United States",gt:5.0,hist:25,pop:335,pc:14.3,re:23,loss:"0.3 to 0.5% GDP",lossN:0.4},
  "uk":{f:"🇬🇧",n:"United Kingdom",gt:0.30,hist:4.6,pop:68,pc:4.4,re:47,loss:"0.1% GDP",lossN:0.1},
  "india":{f:"🇮🇳",n:"India",gt:2.8,hist:3.5,pop:1430,pc:2.0,re:21,loss:"1.5 to 2% GDP",lossN:1.75},
@@ -432,7 +437,7 @@ const CMP={
  "norway":{f:"🇳🇴",n:"Norway",gt:0.037,hist:0.3,pop:5.5,pc:6.7,re:98,loss:"0.1% GDP",lossN:0.1},
  "tuvalu":{f:"🇹🇻",n:"Tuvalu",gt:0.00001,hist:0,pop:0.011,pc:0.9,re:45,loss:"Existential",lossN:5}
 };
-const PRESETS=[["uk","india"],["usa","bangladesh"],["germany","kenya"],["australia","ethiopia"],["china","pakistan"],["saudi arabia","tuvalu"]];
+const PRESETS=[["uk","india"],["usa","bangladesh"],["germany","kenya"],["australia","ethiopia"],["china","pakistan"],["saudi arabia","tuvalu"],["g7","ssa"],["eu","g77"]];
 function buildComparePickers(){
  const keys=Object.keys(CMP);
  const opts=keys.map(function(k){return '<option value="'+k+'">'+CMP[k].f+' '+CMP[k].n+'</option>';}).join("");
@@ -444,7 +449,7 @@ function buildComparePickers(){
  if(pEl)pEl.innerHTML=PRESETS.map(function(p){
   return '<span class="cmp-chip" onclick="setCompare(\''+p[0]+'\',\''+p[1]+'\')">'+CMP[p[0]].n+' vs '+CMP[p[1]].n+'</span>';}).join("");
  renderCompare();}
-function setCompare(a,b){document.getElementById("cmpA").value=a;document.getElementById("cmpB").value=b;renderCompare();saveCmpChoice();}
+function setCompare(a,b){document.getElementById("cmpA").value=a;document.getElementById("cmpB").value=b;renderCompare();saveCmpChoice();updateUrlParams();}
 function cmpRow(label,va,vb,fa,fb,maxv){
  const pa=Math.min(100,(va/maxv)*100), pb=Math.min(100,(vb/maxv)*100);
  const ca=va>=vb?"#d64d1e":"#1f9aa8", cb=vb>=va?"#d64d1e":"#1f9aa8";
@@ -458,9 +463,9 @@ function renderCompare(){
  if(!elA||!elB)return;
  const a=CMP[elA.value], b=CMP[elB.value];
  if(!a||!b)return;
- let h='<div class="cmp-head"><div><div class="cmp-flag">'+a.f+'</div><div class="cmp-cname">'+a.n+'</div></div>'+
+ let h='<div class="cmp-head"><div><div class="cmp-flag">'+a.f+'</div><div class="cmp-cname">'+a.n+(a.isBloc?' <span style="font-family:var(--mono);font-size:.58rem;color:var(--sky-deep)">BLOC</span>':'')+'</div></div>'+
   '<div class="cmp-label">Metric</div>'+
-  '<div class="cmp-right"><div class="cmp-flag">'+b.f+'</div><div class="cmp-cname">'+b.n+'</div></div></div>';
+  '<div class="cmp-right"><div class="cmp-flag">'+b.f+'</div><div class="cmp-cname">'+b.n+(b.isBloc?' <span style="font-family:var(--mono);font-size:.58rem;color:var(--sky-deep)">BLOC</span>':'')+'</div></div></div>';
  h+=cmpRow("Historical CO2<br>since 1850",a.hist,b.hist,a.hist+"%",b.hist+"%",Math.max(a.hist,b.hist,1));
  h+=cmpRow("Annual CO2<br>today",a.gt,b.gt,a.gt+" Gt",b.gt+" Gt",Math.max(a.gt,b.gt));
  h+=cmpRow("CO2 per<br>person",a.pc,b.pc,a.pc+" t",b.pc+" t",Math.max(a.pc,b.pc));
@@ -483,7 +488,7 @@ function renderCompare(){
  if(vEl)vEl.innerHTML=v;}
 
 
-document.addEventListener('DOMContentLoaded', function(){buildComparePickers();restoreCmpChoice();});
+document.addEventListener('DOMContentLoaded', function(){buildComparePickers();if(!loadFromUrlParams()){restoreCmpChoice();}});
 
 </script>
 <script>
@@ -495,6 +500,30 @@ function toggleTheme(){
 }
 </script>
 <script>
+
+function updateUrlParams(){
+  const a=document.getElementById("cmpA").value, b=document.getElementById("cmpB").value;
+  const url=new URL(window.location);
+  url.searchParams.set("a",a); url.searchParams.set("b",b);
+  window.history.replaceState({},"",url);
+}
+function loadFromUrlParams(){
+  const params=new URLSearchParams(window.location.search);
+  const a=params.get("a"), b=params.get("b");
+  if(a&&CMP[a]&&b&&CMP[b]){
+    document.getElementById("cmpA").value=a;
+    document.getElementById("cmpB").value=b;
+    renderCompare();
+    return true;
+  }
+  return false;
+}
+function copyCompareLink(){
+  updateUrlParams();
+  navigator.clipboard.writeText(window.location.href);
+  const btn=document.getElementById("shareLinkBtn");
+  if(btn){const old=btn.textContent;btn.textContent="Link copied";setTimeout(()=>btn.textContent=old,1800);}
+}
 function saveCmpChoice(){
   try{localStorage.setItem('cb-cmp', JSON.stringify({a:document.getElementById('cmpA').value,b:document.getElementById('cmpB').value}));}catch(e){}
 }
