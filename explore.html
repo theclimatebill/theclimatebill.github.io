@@ -355,6 +355,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
       <input type="text" id="searchInput" placeholder="Search any country, for example India, France, Poland, Kenya...">
       <button onclick="handleSearch()">Search</button>
     </div>
+    <p style="font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:8px">For example</p>
     <div class="explore-chips" id="explore-chips"></div>
     <div class="result-panel" id="country-result">
       <div class="rp-head"><span class="rp-label">Country Profile</span></div>
@@ -507,7 +508,7 @@ function emissColor(gt){
  if(gt<3)return "#d96530";
  return "#f07838";}
 
-const CHIPS=["china","usa","india","germany","uk","france","spain","italy","poland","netherlands","sweden","norway","denmark","ukraine","turkey","pakistan","bangladesh","sri lanka","vietnam","thailand","philippines","indonesia","south korea","japan","saudi arabia","uae","egypt","morocco","nigeria","kenya","ethiopia","south africa","brazil","mexico","argentina","australia","canada","russia","tuvalu"];
+const CHIPS=["india","usa","kenya"];
 function buildChips(){document.getElementById("explore-chips").innerHTML=CHIPS.map(k=>{const d=COUNTRIES[k];
  return '<div class="echip" onclick="showCountry(\''+k+'\')"><span class="ef">'+d.f+'</span><div><div class="en">'+d.n+'</div><div class="eco">'+d.gt+' Gt</div></div></div>';}).join("");}
 
@@ -547,7 +548,7 @@ function handleSearch(){
  if(k){showCountry(k);return;}
  const e=Object.values(ID_MAP).find(x=>x[0].toLowerCase().includes(q));
  if(e){showPanel(basicPanel(e[0],e[1]));return;}
- showPanel('<p style="color:var(--muted)">No data found for "'+q+'". Try another spelling, or select a country from the list above.</p>');}
+ showPanel('<p style="color:var(--muted)">No data found for "'+q+'". Try another spelling.</p>');}
 document.getElementById("searchInput").addEventListener("keydown",function(e){if(e.key==="Enter")handleSearch();});
 
 function buildMap(){
