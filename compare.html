@@ -401,10 +401,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 <div class="section" id="main-content" tabindex="-1" style="padding-bottom:0;max-width:1160px">
   <div class="breadcrumb"><a href="index.html">Home</a> / Compare Countries</div>
   <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>20 countries available</span><span class="dot"></span>
-    <div class="page-actions">
-      <a class="pa-btn" href="mailto:theclimatebill@gmail.com?subject=Issue%20on%20The%20Climate%20Bill:%20Compare%20Countries%20page&body=Page: https://theclimatebill.github.io/compare.html%0D%0A%0D%0APlease describe the issue:%0D%0A">Report an issue</a>
-    </div>
-  </div>
+      </div>
 </div>
 <div class="full-section">
   <div class="inner">
@@ -419,8 +416,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
     </div>
     <div class="cmp-board" id="cmp-board"></div>
     <div class="cmp-verdict" id="cmp-verdict"></div>
-    <button class="pa-btn" id="shareLinkBtn" onclick="copyCompareLink()" style="margin-top:14px">Copy link to this comparison</button>
-  </div>
+    </div>
 </div>
 
 <div class="related-section">
@@ -557,12 +553,6 @@ function loadFromUrlParams(){
     return true;
   }
   return false;
-}
-function copyCompareLink(){
-  updateUrlParams();
-  navigator.clipboard.writeText(window.location.href);
-  const btn=document.getElementById("shareLinkBtn");
-  if(btn){const old=btn.textContent;btn.textContent="Link copied";setTimeout(()=>btn.textContent=old,1800);}
 }
 function saveCmpChoice(){
   try{localStorage.setItem('cb-cmp', JSON.stringify({a:document.getElementById('cmpA').value,b:document.getElementById('cmpB').value,savedAt:new Date().toISOString()}));}catch(e){}
