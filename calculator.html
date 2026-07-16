@@ -393,8 +393,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   <div class="breadcrumb"><a href="index.html">Home</a> / Carbon Calculator</div>
   <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>Personal footprint estimate</span><span class="dot"></span>
     <div class="page-actions">
-      <button class="pa-btn" onclick="window.print()">Print</button>
-      <button class="pa-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied'">Share</button>
+      <a class="pa-btn" href="mailto:theclimatebill@gmail.com?subject=Issue%20on%20The%20Climate%20Bill:%20Carbon%20Calculator%20page&body=Page: https://theclimatebill.github.io/calculator.html%0D%0A%0D%0APlease describe the issue:%0D%0A">Report an issue</a>
     </div>
   </div>
 </div>
@@ -577,7 +576,7 @@ function toggleTheme(){
 </script>
 <script>
 function saveCalcInputs(){
-  var data={fly:document.getElementById('q-fly').value,car:document.getElementById('q-car').value,fuel:document.getElementById('q-fuel').value,diet:document.getElementById('q-diet').value,home:document.getElementById('q-home').value,shop:document.getElementById('q-shop').value};
+  var data={fly:document.getElementById('q-fly').value,car:document.getElementById('q-car').value,fuel:document.getElementById('q-fuel').value,diet:document.getElementById('q-diet').value,home:document.getElementById('q-home').value,shop:document.getElementById('q-shop').value,savedAt:new Date().toISOString()};
   try{localStorage.setItem('cb-calc-inputs', JSON.stringify(data));}catch(e){}
 }
 function restoreCalcInputs(){
@@ -594,7 +593,8 @@ function restoreCalcInputs(){
     runCalc();
     var note=document.createElement('div');
     note.style.cssText='font-family:var(--mono);font-size:.68rem;color:var(--sky-deep);margin-top:10px;text-align:center';
-    note.textContent='Restored from your last visit.';
+    var savedDate=d.savedAt?new Date(d.savedAt).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'}):'a previous visit';
+    note.textContent='Restored from '+savedDate+'.';
     document.getElementById('calc-result').appendChild(note);
   }catch(e){}
 }

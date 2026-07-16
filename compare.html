@@ -402,8 +402,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   <div class="breadcrumb"><a href="index.html">Home</a> / Compare Countries</div>
   <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>20 countries available</span><span class="dot"></span>
     <div class="page-actions">
-      <button class="pa-btn" onclick="window.print()">Print</button>
-      <button class="pa-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied'">Share</button>
+      <a class="pa-btn" href="mailto:theclimatebill@gmail.com?subject=Issue%20on%20The%20Climate%20Bill:%20Compare%20Countries%20page&body=Page: https://theclimatebill.github.io/compare.html%0D%0A%0D%0APlease describe the issue:%0D%0A">Report an issue</a>
     </div>
   </div>
 </div>
@@ -570,14 +569,21 @@ function copyCompareLink(){
   if(btn){const old=btn.textContent;btn.textContent="Link copied";setTimeout(()=>btn.textContent=old,1800);}
 }
 function saveCmpChoice(){
-  try{localStorage.setItem('cb-cmp', JSON.stringify({a:document.getElementById('cmpA').value,b:document.getElementById('cmpB').value}));}catch(e){}
+  try{localStorage.setItem('cb-cmp', JSON.stringify({a:document.getElementById('cmpA').value,b:document.getElementById('cmpB').value,savedAt:new Date().toISOString()}));}catch(e){}
 }
 function restoreCmpChoice(){
   try{
     var raw=localStorage.getItem('cb-cmp');
     if(!raw)return;
     var d=JSON.parse(raw);
-    if(d.a&&CMP[d.a]&&d.b&&CMP[d.b]){document.getElementById('cmpA').value=d.a;document.getElementById('cmpB').value=d.b;renderCompare();}
+    if(d.a&&CMP[d.a]&&d.b&&CMP[d.b]){
+      document.getElementById('cmpA').value=d.a;document.getElementById('cmpB').value=d.b;renderCompare();
+      var vEl=document.getElementById('cmp-verdict');
+      if(vEl&&d.savedAt){
+        var savedDate=new Date(d.savedAt).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+        vEl.innerHTML+='<p style="font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-top:10px">Restored from '+savedDate+'.</p>';
+      }
+    }
   }catch(e){}
 }
 </script>

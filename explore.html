@@ -344,6 +344,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 .video-play svg{margin-left:4px}
 .video-fallback{font-size:.74rem;margin-top:8px}
 .video-fallback a{color:var(--sky-deep);text-decoration:none}
+
+.editorial-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-left:6px;padding:2px 7px;border:1px dashed var(--line);border-radius:10px}
+.official-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--moss);margin-left:6px;padding:2px 7px;border:1px solid #d3e3c4;background:#f1f7ea;border-radius:10px}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -421,8 +424,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   <div class="breadcrumb"><a href="index.html">Home</a> / Explore</div>
   <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>39 country profiles, 130+ mapped</span><span class="dot"></span>
     <div class="page-actions">
-      <button class="pa-btn" onclick="window.print()">Print</button>
-      <button class="pa-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied'">Share</button>
+      <a class="pa-btn" href="mailto:theclimatebill@gmail.com?subject=Issue%20on%20The%20Climate%20Bill:%20Explore%20page&body=Page: https://theclimatebill.github.io/explore.html%0D%0A%0D%0APlease describe the issue:%0D%0A">Report an issue</a>
     </div>
   </div>
 </div>
@@ -456,6 +458,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
       <div class="map-loading skeleton" id="map-skeleton">Loading map data...</div>
     </div>
     <div class="map-legend" id="map-legend"></div>
+    <div class="search-row" style="margin-top:16px">
+      <input type="text" id="searchInput" placeholder="Or type a country name, for example India, France, Kenya..." aria-label="Search for a country by name">
+      <button onclick="handleSearch()">Search</button>
+    </div>
+    <div class="result-panel" id="country-result">
+      <div class="rp-head"><span class="rp-label">Country Profile</span></div>
+      <div class="rp-body" id="country-result-body"></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+      <a href="countries.csv" download class="pa-btn">Download data as CSV</a>
+      <a href="countries.json" download class="pa-btn">Download data as JSON</a>
+    </div>
     <div class="kf-box">
       <div class="kf-label">Key findings</div>
       <ul class="kf-list">
@@ -469,18 +483,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
     </div>
     <p class="video-fallback">Video not loading? <a href="https://www.youtube.com/watch?v=x1SgmFa0r04" target="_blank">Watch directly on YouTube</a></p>
     <p class="video-cap">NASA's ultra high resolution atmospheric model tracking carbon dioxide as it moves around the planet over a single year. Watch the visible plumes of fossil fuel emissions build over industrial regions and shift with the seasons. Source: <a href="https://svs.gsfc.nasa.gov/11719/" target="_blank">NASA Scientific Visualization Studio</a></p>
-    <div class="search-row">
-      <input type="text" id="searchInput" placeholder="Search any country, for example India, France, Poland, Kenya..." aria-label="Search for a country by name">
-      <button onclick="handleSearch()">Search</button>
     </div>
-    <p style="font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:8px">For example</p>
-    <div class="explore-chips" id="explore-chips"></div>
-    <div class="result-panel" id="country-result">
-      <div class="rp-head"><span class="rp-label">Country Profile</span></div>
-      <div class="rp-body" id="country-result-body"></div>
-    </div>
-    
-  </div>
 </div>
 
 <hr class="div">
@@ -662,10 +665,6 @@ function emissColor(gt){
  if(gt<3)return "#d96530";
  return "#f07838";}
 
-const CHIPS=["india","usa","kenya"];
-function buildChips(){document.getElementById("explore-chips").innerHTML=CHIPS.map(k=>{const d=COUNTRIES[k];
- return '<div class="echip" onclick="showCountry(\''+k+'\')"><span class="ef">'+d.f+'</span><div><div class="en">'+d.n+'</div><div class="eco">'+d.gt+' Gt</div></div></div>';}).join("");}
-
 function profileHTML(d){
  const vc=(d.v==="Extreme"||d.v==="Very High")?"var(--sky-deep)":d.v==="High"?"var(--clay)":"var(--moss)";
  const vcl=d.vd==="leading"?"v-leading":d.vd==="progress"?"v-progress":"v-behind";
@@ -684,7 +683,8 @@ function profileHTML(d){
  '</div><div class="cp-note">'+d.a+'</div>'+
  rankNoteHtml+
  '<div class="cp-action"><div class="cp-action-label">Climate target</div>'+d.tg+'</div>'+
- '<div style="margin-top:10px"><span class="cp-verdict '+vcl+'">'+vt+'</span> <span class="cp-verdict '+trajClass+'">Trajectory: '+traj+'</span></div>'+
+ '<div style="margin-top:10px"><span class="cp-verdict '+vcl+'">'+vt+'<span class="editorial-tag">Editorial</span></span> <span class="cp-verdict '+trajClass+'">Trajectory: '+traj+'<span class="editorial-tag">Editorial</span></span></div>'+
+ '<p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:6px">Annual and historical CO2 figures above are official statistics. Verdict and trajectory labels are this site\'s editorial assessment. <span class="official-tag">Official data</span> is used for every numeric figure.</p>'+
  yearHtml;
 }
 
@@ -746,7 +746,7 @@ function buildMap(){
 
 
 document.addEventListener("DOMContentLoaded", function(){
- renderToggle();buildCarbonMajors();buildChips();buildMap();
+ renderToggle();buildCarbonMajors();buildMap();
  document.getElementById("searchInput").addEventListener("keydown",function(e){if(e.key==="Enter")handleSearch();});
  const slider=document.getElementById("trend-slider");
  if(slider)slider.addEventListener("input",updateTrendYear);

@@ -424,8 +424,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   <div class="breadcrumb"><a href="index.html">Home</a> / Impact Data</div>
   <div class="dateline"><span>Updated July 2026</span><span class="dot"></span><span>22 tracked indicators</span><span class="dot"></span>
     <div class="page-actions">
-      <button class="pa-btn" onclick="window.print()">Print</button>
-      <button class="pa-btn" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied'">Share</button>
+      <a class="pa-btn" href="mailto:theclimatebill@gmail.com?subject=Issue%20on%20The%20Climate%20Bill:%20Impact%20Data%20page&body=Page: https://theclimatebill.github.io/impact.html%0D%0A%0D%0APlease describe the issue:%0D%0A">Report an issue</a>
     </div>
   </div>
 </div>
@@ -444,7 +443,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
     <ul class="kf-list">
       <li>Heat now kills an estimated <strong>546,000 people a year</strong>, a figure up 23% since the 1990s.</li>
       <li>Wildlife populations have fallen by <strong>73% on average since 1970</strong>, with Latin America's decline the steepest of any region.</li>
-      <li>Climate related disasters could displace up to <strong>216 million people within their own countries by 2050</strong>.</li>
+      <li>Climate related disasters could displace <strong>44 to 216 million people</strong> within their own countries by 2050, depending on how much emissions are cut.</li>
     </ul>
   </div>
   <div class="video-thumb" id="video-L1AHQEqsPxQ" style="background-image:url('https://img.youtube.com/vi/L1AHQEqsPxQ/hqdefault.jpg')" onclick="loadVideo('L1AHQEqsPxQ')" role="button" tabindex="0" aria-label="Play video: WHO Climate Change and Health" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadVideo('L1AHQEqsPxQ');}">
@@ -576,7 +575,7 @@ function buildCharts(){
 /* ============ IMPACT DATA ============ */
 const IMPACT_DATA={
  heat:[
-  {n:"546,000",c:"b-red",l:"Heat related deaths every year",d:"Global annual average deaths from heat exposure between 2012 and 2021. The rate of heat related mortality has risen 23 percent since the 1990s.",s:"WHO and Lancet Countdown 2025",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
+  {n:"546,000",c:"b-red",l:"Heat related deaths every year",d:"A modelled global annual average from the Lancet Countdown, based on temperature and mortality data for 2012 to 2021. Modelled estimates of this kind carry real uncertainty and vary somewhat between research groups. The rate of heat related mortality has risen 23 percent since the 1990s.",s:"WHO and Lancet Countdown 2025",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
   {n:"16 days",c:"b-amber",l:"Extra dangerous heat days per person in 2024",d:"The average person worldwide was exposed to 16 additional health threatening hot days in 2024 that would not have occurred without climate change.",s:"Lancet Countdown 2025",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
   {n:"84%",c:"b-red",l:"Of recent heatwave days were caused by warming",d:"Of all heatwave days people experienced between 2020 and 2024, 84 percent would not have occurred without human caused climate change.",s:"Lancet Countdown 2025",u:"https://healthpolicy-watch.news/climate-change-is-here-and-its-killing-millions/"},
   {n:"640bn",c:"b-amber",l:"Labour hours lost to heat in 2024",d:"Heat exposure caused 640 billion potential working hours to be lost in 2024, with productivity losses equal to 1.09 trillion dollars, about one percent of global GDP.",s:"WHO and Lancet Countdown",u:"https://www.who.int/news/item/29-10-2025-climate-inaction-is-claiming-millions-of-lives-every-year--warns-new-lancet-countdown-report"},
@@ -590,7 +589,7 @@ const IMPACT_DATA={
   {n:"1.4m",c:"b-red",l:"Projected annual wildfire smoke deaths by 2095",d:"Premature deaths from wildfire smoke are projected to reach 1.4 million people per year by the end of the century under a mid range warming scenario.",s:"Nature, 2025",u:"https://www.nature.com/articles/s41586-025-09612-9"},
   {n:"$1.09tn",c:"b-amber",l:"Annual income lost to heat",d:"Income losses from heat related productivity decline, equivalent to almost one percent of global GDP each year.",s:"Lancet Countdown 2025",u:"https://www.sheltercluster.org/extreme-heat-working-group/documents/annual-heat-related-deaths-surge-546-000-last-decade-due"}],
  migration:[
-  {n:"216m",c:"b-blue",l:"Projected internal climate migrants by 2050",d:"Without urgent climate action, up to 216 million people across six world regions could be forced to move within their own countries by 2050.",s:"World Bank Groundswell",u:"https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"},
+  {n:"44 to 216m",c:"b-blue",l:"Projected internal climate migrants by 2050",d:"World Bank Groundswell modelling gives a range depending on emissions pathway: 44 million under a more climate friendly and inclusive development scenario, up to 216 million if emissions and inequality remain high.",s:"World Bank Groundswell",u:"https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"},
   {n:"86m",c:"b-blue",l:"Climate migrants in Sub Saharan Africa alone",d:"The most affected region. Sub Saharan Africa could see up to 86 million internal climate migrants by 2050, with East Asia and the Pacific facing 48 million.",s:"World Bank",u:"https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"},
   {n:"98%",c:"b-red",l:"Of disaster displacements caused by weather",d:"Almost all disaster related internal displacement is now caused by extreme weather events rather than earthquakes or other geophysical hazards.",s:"IDMC",u:"https://www.internal-displacement.org"},
   {n:"7.7m",c:"b-amber",l:"People living in disaster displacement",d:"As of the end of 2023, 7.7 million people across 82 countries and territories were living in internal displacement as a result of disasters.",s:"IDMC 2024",u:"https://www.internal-displacement.org"},
