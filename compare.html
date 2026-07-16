@@ -412,7 +412,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
     <div class="sec-eye">Country comparison</div>
     <h2 class="sec-title">Put two countries side by side.</h2>
     <p class="sec-sub">Country emissions data comparison.</p>
-    <div class="cmp-presets" id="cmp-presets"></div>
     <div class="cmp-picker">
       <select class="cmp-sel" id="cmpA" onchange="renderCompare();saveCmpChoice();updateUrlParams()"></select>
       <span class="cmp-vs">versus</span>
@@ -481,7 +480,7 @@ const CMP={
  "norway":{f:"🇳🇴",n:"Norway",gt:0.037,hist:0.3,pop:5.5,pc:6.7,re:98,loss:"0.1% GDP",lossN:0.1},
  "tuvalu":{f:"🇹🇻",n:"Tuvalu",gt:0.00001,hist:0,pop:0.011,pc:0.9,re:45,loss:"Existential",lossN:5}
 };
-const PRESETS=[["uk","india"],["usa","bangladesh"],["germany","kenya"],["australia","ethiopia"],["china","pakistan"],["saudi arabia","tuvalu"],["g7","ssa"],["eu","g77"]];
+
 function buildComparePickers(){
  const keys=Object.keys(CMP);
  const opts=keys.map(function(k){return '<option value="'+k+'">'+CMP[k].f+' '+CMP[k].n+'</option>';}).join("");
@@ -489,9 +488,6 @@ function buildComparePickers(){
  if(!elA||!elB)return;
  elA.innerHTML=opts; elB.innerHTML=opts;
  elA.value="uk"; elB.value="india";
- const pEl=document.getElementById("cmp-presets");
- if(pEl)pEl.innerHTML=PRESETS.map(function(p){
-  return '<span class="cmp-chip" onclick="setCompare(\''+p[0]+'\',\''+p[1]+'\')">'+CMP[p[0]].n+' vs '+CMP[p[1]].n+'</span>';}).join("");
  renderCompare();}
 function setCompare(a,b){document.getElementById("cmpA").value=a;document.getElementById("cmpB").value=b;renderCompare();saveCmpChoice();updateUrlParams();}
 function cmpRow(label,va,vb,fa,fb,maxv){
