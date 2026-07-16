@@ -347,6 +347,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 
 .editorial-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-left:6px;padding:2px 7px;border:1px dashed var(--line);border-radius:10px}
 .official-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--moss);margin-left:6px;padding:2px 7px;border:1px solid #d3e3c4;background:#f1f7ea;border-radius:10px}
+
+.fullbleed{position:relative;height:340px;margin:0;overflow:hidden}
+.fullbleed img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+.fullbleed-cap{position:absolute;bottom:0;left:0;right:0;padding:28px 32px;background:linear-gradient(0deg,rgba(20,20,18,.75) 0%,transparent 100%)}
+.fullbleed-cap p{color:#f3ecdd;font-family:var(--serif);font-size:1.3rem;font-weight:600;max-width:600px}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -483,6 +488,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 </div>
 
 <hr class="div">
+
+<div class="fullbleed">
+  <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1600&q=75" alt="Solar panels at scale" loading="lazy">
+  <div class="fullbleed-cap"><p>The same planet, three ways to measure who is responsible for it.</p></div>
+</div>
 
 <div class="section">
   <div class="sec-eye">Another way to see responsibility</div>
@@ -668,20 +678,26 @@ function profileHTML(d){
  const traj=d.traj||"No assessment";
  const trajClass=traj==="On track"?"v-leading":traj==="Off track"?"v-progress":"v-behind";
  const rankNoteHtml=d.rankNote?'<div class="cp-note" style="background:var(--sky-light);border-color:var(--sky)">'+d.rankNote+'</div>':'';
- const yearHtml=d.yr?'<p style="font-family:var(--mono);font-size:.63rem;color:var(--muted);margin-top:10px">Underlying data from '+d.yr+'. More recent figures may exist for some indicators.</p>':'';
- return '<p style="font-size:1rem;font-weight:600;margin-bottom:14px">'+d.f+' '+d.n+'</p>'+
- '<div class="cp-grid">'+
+ const yearHtml=d.yr?'<p style="font-family:var(--mono);font-size:.63rem;color:var(--muted);margin-top:10px">Underlying data from '+d.yr+'.</p>':'';
+ const detailId='cp-detail-'+Math.random().toString(36).slice(2,8);
+ return '<p style="font-size:1.15rem;font-weight:600;margin-bottom:16px">'+d.f+' '+d.n+'</p>'+
+ '<div class="cp-grid" style="grid-template-columns:repeat(3,1fr)">'+
  '<div class="cp-cell"><div class="cp-label">Annual CO2</div><div class="cp-val">'+d.gt+' Gt</div><div class="cp-sub">'+d.sh+'% of global</div></div>'+
  '<div class="cp-cell"><div class="cp-label">Historical share</div><div class="cp-val" style="color:var(--clay)">'+d.hi+'%</div><div class="cp-sub">since 1850</div></div>'+
+ '<div class="cp-cell"><div class="cp-label">Renewables</div><div class="cp-val" style="color:var(--moss)">'+d.re+'%</div><div class="cp-sub">of electricity</div></div>'+
+ '</div>'+
+ '<button class="pa-btn" onclick="document.getElementById(\''+detailId+'\').style.display=document.getElementById(\''+detailId+'\').style.display===\'block\'?\'none\':\'block\'">More detail</button>'+
+ '<div id="'+detailId+'" style="display:none;margin-top:16px">'+
+ '<div class="cp-grid" style="grid-template-columns:1fr 1fr;margin-top:0">'+
  '<div class="cp-cell"><div class="cp-label">Vulnerability</div><div class="cp-val" style="color:'+vc+';font-size:.95rem">'+d.v+'</div><div class="cp-sub">climate risk level</div></div>'+
  '<div class="cp-cell"><div class="cp-label">Economic losses</div><div class="cp-val" style="font-size:.9rem">'+d.loss+'</div><div class="cp-sub">estimated per year</div></div>'+
- '<div class="cp-cell"><div class="cp-label">Renewables</div><div class="cp-val" style="color:var(--moss)">'+d.re+'%</div><div class="cp-sub">of electricity</div></div>'+
  '</div><div class="cp-note">'+d.a+'</div>'+
  rankNoteHtml+
  '<div class="cp-action"><div class="cp-action-label">Climate target</div>'+d.tg+'</div>'+
  '<div style="margin-top:10px"><span class="cp-verdict '+vcl+'">'+vt+'<span class="editorial-tag">Editorial</span></span> <span class="cp-verdict '+trajClass+'">Trajectory: '+traj+'<span class="editorial-tag">Editorial</span></span></div>'+
- '<p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:6px">Annual and historical CO2 figures above are official statistics. Verdict and trajectory labels are this site\'s editorial assessment. <span class="official-tag">Official data</span> is used for every numeric figure.</p>'+
- yearHtml;
+ '<p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:6px">Annual and historical CO2 figures above are official statistics. Verdict and trajectory labels are this site\'s editorial assessment.</p>'+
+ yearHtml+
+ '</div>';
 }
 
 function showPanel(html){

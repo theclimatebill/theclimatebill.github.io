@@ -347,6 +347,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 .video-play svg{margin-left:4px}
 .video-fallback{font-size:.74rem;margin-top:8px}
 .video-fallback a{color:var(--sky-deep);text-decoration:none}
+
+.dtable-toggle{width:100%;padding:14px;background:var(--surface2);border:none;border-top:1px solid var(--line);font-family:var(--mono);font-size:.72rem;color:var(--sky-deep);cursor:pointer;text-align:center}
+.dtable-toggle:hover{background:var(--sky-light)}
+
+.pause-moment{padding:80px 32px;text-align:center;max-width:900px;margin:0 auto}
+.pause-num{font-family:var(--serif);font-weight:900;font-size:clamp(3rem,8vw,5.5rem);line-height:1;color:var(--ink);letter-spacing:-.02em}
+.pause-num em{color:var(--clay);font-style:normal}
+.pause-sub{font-size:1rem;color:var(--muted);margin-top:18px;max-width:44ch;margin-left:auto;margin-right:auto;line-height:1.7}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -466,10 +474,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   <div class="dtable-wrap">
     <div class="dtable-head"><span>Indicator</span><span>Latest figure</span><span>Comparison</span><span>Source</span></div>
     <div id="dtable-rows"></div>
+    <button class="dtable-toggle" id="dtable-toggle" onclick="toggleDTable()">Show all rows</button>
   </div>
 </div>
 
 <hr class="div">
+
+<div class="pause-moment">
+  <div class="pause-num">$822m <span style="font-size:.4em;color:var(--muted)">pledged</span><br><em>$395bn</em> <span style="font-size:.4em;color:var(--muted)">owed every year</span></div>
+  <p class="pause-sub">The world agreed to pay for climate damage it did not prevent. What follows is the gap between that promise and reality.</p>
+</div>
 
 <div class="section" id="paying">
   <div class="chapter">The bill</div>
@@ -645,9 +659,20 @@ const DTABLE=[
  {n:"Amazon forest burned, 2024",c:"Nature",f:"20m hectares",g:"The largest area since 2005",s:"Germanwatch",u:"https://www.germanwatch.org/en/cri"},
  {n:"Most affected countries that are low income",c:"Equity",f:"7 of 10",g:"Germanwatch 2024 assessment",s:"Germanwatch CRI",u:"https://www.germanwatch.org/en/cri"}
 ];
+let dtableExpanded=false;
+function rowHTML(r){
+ return '<div class="dtable-row"><div><div class="dt-name">'+r.n+'</div><div class="dt-cat">'+r.c+'</div></div><div class="dt-fig">'+r.f+'</div><div class="dt-chg">'+r.g+'</div><div class="dt-src"><a href="'+r.u+'" target="_blank">'+r.s+'</a></div></div>';
+}
 function renderDTable(){
- document.getElementById("dtable-rows").innerHTML=DTABLE.map(function(r){
-  return '<div class="dtable-row"><div><div class="dt-name">'+r.n+'</div><div class="dt-cat">'+r.c+'</div></div><div class="dt-fig">'+r.f+'</div><div class="dt-chg">'+r.g+'</div><div class="dt-src"><a href="'+r.u+'" target="_blank">'+r.s+'</a></div></div>';}).join("");}
+ const visible=dtableExpanded?DTABLE:DTABLE.slice(0,8);
+ document.getElementById("dtable-rows").innerHTML=visible.map(rowHTML).join("");
+ const toggle=document.getElementById("dtable-toggle");
+ if(toggle){
+  toggle.style.display=DTABLE.length>8?"block":"none";
+  toggle.textContent=dtableExpanded?"Show fewer rows":"Show all "+DTABLE.length+" rows";
+ }
+}
+function toggleDTable(){dtableExpanded=!dtableExpanded;renderDTable();}
 
 function removeChartSkeleton(id){const el=document.getElementById(id+"-skel");if(el)el.remove();}
 function buildImpacts(){
