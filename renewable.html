@@ -138,7 +138,8 @@ hr.div{border:none;border-top:1px solid var(--line);max-width:1160px;margin:0 au
 .bs-src a{color:var(--sky-deep);text-decoration:none;font-family:var(--mono);font-size:.63rem}
 .resp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
 .resp-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 20px}
-.rbar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.rbar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;cursor:pointer;border-radius:6px;padding:3px 6px;margin-left:-6px;transition:background .15s}
+.rbar-row:hover{background:var(--sky-light)}
 .rbar-flag{width:24px;font-size:1rem}
 .rbar-name{width:110px;font-size:.78rem;font-weight:500}
 .rbar-track{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
@@ -273,6 +274,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   nav{padding:12px 18px}
   .nav-links{display:none}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--bg);padding:16px 20px;gap:14px;border-bottom:1px solid var(--line)}
+  .nav-links.open li[style]{border-left:none !important;padding-left:0 !important;margin-left:0 !important;border-top:1px solid var(--line);padding-top:12px !important}
   .hamburger{display:flex}
   .section,.full-section{padding:52px 18px}
   .hero-hub{padding:110px 18px 40px}
@@ -390,6 +392,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="explore.html">Explore</a></li>
+    <li><a href="countries.html">Countries</a></li>
     <li><a href="impact.html">Impact</a></li>
     <li><a href="renewable.html" style="color:var(--sky-deep)">Renewable Energy</a></li>
     <li><a href="calculator.html">Calculator</a></li>
@@ -521,8 +524,12 @@ function barChartSVG(id,labels,values,color){
 
 
 const RENEW_BARS=[["🇪🇹","Ethiopia",99],["🇳🇴","Norway",98],["🇰🇪","Kenya",90],["🇧🇷","Brazil",89],["🇩🇰","Denmark",87],["🇸🇪","Sweden",69],["🇩🇪","Germany",52],["🇪🇸","Spain",50],["🇬🇧","UK",47],["🇹🇷","Turkey",42],["🇦🇺","Australia",35],["🇨🇳","China",31],["🇫🇷","France",27],["🇯🇵","Japan",24],["🇺🇸","USA",23],["🇮🇳","India",21],["🇿🇦","South Africa",12],["🇸🇦","Saudi Arabia",1]];
+function renewSlug(name){
+ const map={"UK":"uk","USA":"usa","South Africa":"southafrica","Saudi Arabia":"saudiarabia"};
+ return map[name]||name.toLowerCase().replace(/ /g,"");
+}
 function buildRenewBars(){document.getElementById("renew-bars").innerHTML=RENEW_BARS.map(r=>
- '<div class="rbar-row"><span class="rbar-flag">'+r[0]+'</span><span class="rbar-name">'+r[1]+'</span><div class="rbar-track"><div class="rbar-fill" style="width:'+r[2]+'%"></div></div><span class="rbar-val">'+r[2]+'%</span></div>').join("");}
+ '<a href="country-'+renewSlug(r[1])+'.html" class="rbar-row" style="text-decoration:none;color:inherit"><span class="rbar-flag">'+r[0]+'</span><span class="rbar-name">'+r[1]+'</span><div class="rbar-track"><div class="rbar-fill" style="width:'+r[2]+'%"></div></div><span class="rbar-val">'+r[2]+'%</span></a>').join("");}
 document.addEventListener("DOMContentLoaded", function(){
  buildRenewBars();
  lineChart("chart-renew",["2010","2013","2016","2019","2022","2024"],[1226,1565,2011,2538,3382,4448],"#3f8dc4",4600,1000);

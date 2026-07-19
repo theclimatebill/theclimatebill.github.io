@@ -273,6 +273,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   nav{padding:12px 18px}
   .nav-links{display:none}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--bg);padding:16px 20px;gap:14px;border-bottom:1px solid var(--line)}
+  .nav-links.open li[style]{border-left:none !important;padding-left:0 !important;margin-left:0 !important;border-top:1px solid var(--line);padding-top:12px !important}
   .hamburger{display:flex}
   .section,.full-section{padding:52px 18px}
   .hero-hub{padding:110px 18px 40px}
@@ -385,6 +386,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="explore.html">Explore</a></li>
+    <li><a href="countries.html">Countries</a></li>
     <li><a href="impact.html">Impact</a></li>
     <li><a href="renewable.html">Renewable Energy</a></li>
     <li><a href="calculator.html">Calculator</a></li>
@@ -416,6 +418,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
     </div>
     <div class="cmp-board" id="cmp-board"></div>
     <div class="cmp-verdict" id="cmp-verdict"></div>
+    <p style="font-size:.72rem;color:var(--muted);font-family:var(--mono);margin-top:10px">Click a country name above for its full page.</p>
     </div>
 </div>
 
@@ -499,9 +502,18 @@ function renderCompare(){
  if(!elA||!elB)return;
  const a=CMP[elA.value], b=CMP[elB.value];
  if(!a||!b)return;
- let h='<div class="cmp-head"><div><div class="cmp-flag">'+a.f+'</div><div class="cmp-cname">'+a.n+(a.isBloc?' <span style="font-family:var(--mono);font-size:.58rem;color:var(--sky-deep)">BLOC</span>':'')+'</div></div>'+
+ function slugForCmp(key,d){
+ if(d.isBloc)return null;
+ const map={"uk":"uk","usa":"usa","south africa":"southafrica","saudi arabia":"saudiarabia","sri lanka":"srilanka"};
+ return map[key]||key.replace(/ /g,"");
+}
+const keyA=document.getElementById("cmpA").value, keyB=document.getElementById("cmpB").value;
+const slugA=slugForCmp(keyA,a), slugB=slugForCmp(keyB,b);
+const nameAHtml=slugA?'<a href="country-'+slugA+'.html" style="color:inherit;text-decoration:none;border-bottom:1px dashed var(--sky)">'+a.n+'</a>':a.n;
+const nameBHtml=slugB?'<a href="country-'+slugB+'.html" style="color:inherit;text-decoration:none;border-bottom:1px dashed var(--sky)">'+b.n+'</a>':b.n;
+let h='<div class="cmp-head"><div><div class="cmp-flag">'+a.f+'</div><div class="cmp-cname">'+nameAHtml+(a.isBloc?' <span style="font-family:var(--mono);font-size:.58rem;color:var(--sky-deep)">BLOC</span>':'')+'</div></div>'+
   '<div class="cmp-label">Metric</div>'+
-  '<div class="cmp-right"><div class="cmp-flag">'+b.f+'</div><div class="cmp-cname">'+b.n+(b.isBloc?' <span style="font-family:var(--mono);font-size:.58rem;color:var(--sky-deep)">BLOC</span>':'')+'</div></div></div>';
+  '<div class="cmp-right"><div class="cmp-flag">'+b.f+'</div><div class="cmp-cname">'+nameBHtml+(b.isBloc?' <span style="font-family:var(--mono);font-size:.58rem;color:var(--sky-deep)">BLOC</span>':'')+'</div></div></div>';
  h+=cmpRow("Historical CO2<br>since 1850",a.hist,b.hist,a.hist+"%",b.hist+"%",Math.max(a.hist,b.hist,1));
  h+=cmpRow("Annual CO2<br>today",a.gt,b.gt,a.gt+" Gt",b.gt+" Gt",Math.max(a.gt,b.gt));
  h+=cmpRow("CO2 per<br>person",a.pc,b.pc,a.pc+" t",b.pc+" t",Math.max(a.pc,b.pc));

@@ -273,6 +273,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 3
   nav{padding:12px 18px}
   .nav-links{display:none}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--bg);padding:16px 20px;gap:14px;border-bottom:1px solid var(--line)}
+  .nav-links.open li[style]{border-left:none !important;padding-left:0 !important;margin-left:0 !important;border-top:1px solid var(--line);padding-top:12px !important}
   .hamburger{display:flex}
   .section,.full-section{padding:52px 18px}
   .hero-hub{padding:110px 18px 40px}
@@ -702,7 +703,9 @@ function showPanel(html){
  const el=document.getElementById("country-result");
  el.style.display="block";
  el.scrollIntoView({behavior:"smooth",block:"nearest"});}
-function showCountry(k){const d=COUNTRIES[k];if(d)showPanel(profileHTML(d));}
+function slugifyKey(k){return k.replace(/ /g,"");}
+function goToCountryPage(k){window.location.href="country-"+slugifyKey(k)+".html";}
+function showCountry(k){if(COUNTRIES[k])goToCountryPage(k);}
 function basicPanel(name,gt){
  return '<p style="font-weight:600;margin-bottom:10px">'+name+'</p><div class="cp-grid" style="grid-template-columns:1fr 1fr">'+
  '<div class="cp-cell"><div class="cp-label">Annual CO2</div><div class="cp-val">'+(gt>=0.01?gt+' Gt':(gt*1000).toFixed(1)+' Mt')+'</div></div>'+
@@ -748,7 +751,7 @@ function buildMap(){
      const e=ID_MAP[+d.id];
      const raw=(e?e[0]:(d.properties&&d.properties.name?d.properties.name:"")).toLowerCase();
      const k=Object.keys(COUNTRIES).find(x=>x===raw||COUNTRIES[x].n.toLowerCase()===raw);
-     if(k){showPanel(profileHTML(COUNTRIES[k]));}
+     if(k){goToCountryPage(k);}
      else if(e){showPanel(basicPanel(e[0],e[1]));}});
  }).catch(function(){
   svg.append("text").attr("x",480).attr("y",250).attr("text-anchor","middle").attr("fill","#5f6f68").attr("font-size","14px").text("Map could not load. Please check your connection.");});}
