@@ -353,6 +353,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 .fullbleed img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
 .fullbleed-cap{position:absolute;bottom:0;left:0;right:0;padding:28px 32px;background:linear-gradient(0deg,rgba(20,20,18,.75) 0%,transparent 100%)}
 .fullbleed-cap p{color:#f3ecdd;font-family:var(--serif);font-size:1.3rem;font-weight:600;max-width:600px}
+
+.atb-moment{padding:56px 32px;text-align:center;max-width:700px;margin:0 auto}
+.atb-moment-quote{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--ink);line-height:1.5;max-width:26ch;margin:0 auto 12px}
+.atb-moment-attr{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sky-deep)}
+
+.search-centered{max-width:520px;margin:40px auto 0}
+.search-examples{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.search-ex-chip{font-family:var(--mono);font-size:.72rem;padding:7px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.search-ex-chip:hover{border-color:var(--sky);color:var(--ink)}
 </style>
 
 <script>(function(){var t=localStorage.getItem('cb-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -433,14 +442,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
 </div>
 <div class="full-section">
   <div class="inner">
-    <div class="chapter">We are now in the Anthropocene, and humans are driving the change</div>
-    <div class="sec-eye">Emissions by country</div>
-    <h2 class="sec-title">Every country. Three ways to see it.</h2>
-    <p class="sec-sub" style="margin-bottom:20px">Emissions are the starting point. Almost everything grey on this site, smoke, drought, bleached coral, traces back to a number on this map.</p>
-    <div class="photo-card">
-      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=75" alt="Industrial skyline under a haze" loading="lazy">
-      <div class="photo-caption"><span class="cap-tag">Global emissions</span>36.8 gigatonnes of CO2 were released in 2023, the highest ever recorded.</div>
-    </div>
+    <h2 class="sec-title" style="font-size:clamp(2.2rem,6vw,4rem);margin-bottom:30px">We are now in the Anthropocene.</h2>
     <div class="map-toggle" id="map-toggle"></div>
     <div class="toggle-note" id="toggle-note"></div>
     <div id="trend-slider-wrap" style="display:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:14px">
@@ -461,54 +463,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.c
       <div class="map-loading skeleton" id="map-skeleton">Loading map data...</div>
     </div>
     <div class="map-legend" id="map-legend"></div>
-    <div class="search-row" style="margin-top:16px">
-      <input type="text" id="searchInput" placeholder="Or type a country name, for example India, France, Kenya..." aria-label="Search for a country by name">
-      <button onclick="handleSearch()">Search</button>
+
+    <div class="search-centered">
+      <div class="search-row">
+        <input type="text" id="searchInput" placeholder="Search for a country..." aria-label="Search for a country by name">
+        <button onclick="handleSearch()">Search</button>
+      </div>
+      <div class="search-examples">
+        <span class="search-ex-chip" onclick="document.getElementById('searchInput').value='India';handleSearch()">🇮🇳 India</span>
+        <span class="search-ex-chip" onclick="document.getElementById('searchInput').value='USA';handleSearch()">🇺🇸 USA</span>
+        <span class="search-ex-chip" onclick="document.getElementById('searchInput').value='Kenya';handleSearch()">🇰🇪 Kenya</span>
+      </div>
     </div>
     <div class="result-panel" id="country-result">
       <div class="rp-head"><span class="rp-label">Country Profile</span></div>
       <div class="rp-body" id="country-result-body"></div>
     </div>
-    <div class="kf-box">
-      <div class="kf-label">Key findings</div>
-      <ul class="kf-list">
-        <li>The top three emitters, <strong>China, the United States and India</strong>, together produce over half of global CO2.</li>
-        <li>Ranked by historical responsibility instead, the <strong>United States alone accounts for 25%</strong> of all CO2 emitted since 1850.</li>
-        <li>A handful of state owned fossil fuel producers account for a disproportionate share of emissions since 1988.</li>
-      </ul>
-    </div>
-    <div class="video-thumb" id="video-x1SgmFa0r04" style="background-image:url('https://img.youtube.com/vi/x1SgmFa0r04/hqdefault.jpg')" onclick="loadVideo('x1SgmFa0r04')" role="button" tabindex="0" aria-label="Play video: NASA: A Year in the Life of Earth's CO2" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadVideo('x1SgmFa0r04');}">
-      <div class="video-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2b2620"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <p class="video-fallback">Video not loading? <a href="https://www.youtube.com/watch?v=x1SgmFa0r04" target="_blank">Watch directly on YouTube</a></p>
-    <p class="video-cap">NASA's ultra high resolution atmospheric model tracking carbon dioxide as it moves around the planet over a single year. Watch the visible plumes of fossil fuel emissions build over industrial regions and shift with the seasons. Source: <a href="https://svs.gsfc.nasa.gov/11719/" target="_blank">NASA Scientific Visualization Studio</a></p>
-    </div>
-</div>
-
-<hr class="div">
-
-<div class="fullbleed">
-  <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1600&q=75" alt="Solar panels at scale" loading="lazy">
-  <div class="fullbleed-cap"><p>The same planet, three ways to measure who is responsible for it.</p></div>
-</div>
-
-<div class="section">
-  <div class="sec-eye">Another way to see responsibility</div>
-  <h2 class="sec-title">It is not only countries.</h2>
-  
-  <div class="resp-grid" style="grid-template-columns:1fr">
-    <div class="resp-card">
-      <div class="chart-title">Top producers, share of emissions since 1988</div>
-      <div id="carbon-majors"></div>
-      <div class="chart-src">Source: <a href="https://carbonmajors.org" target="_blank">Carbon Majors Database, InfluenceMap</a></div>
-    </div>
-  </div>
-  <div class="hub-ctas" style="justify-content:flex-start;margin-top:24px">
-    <a href="compare.html" class="btn-g">Compare two countries directly</a>
-  </div>
-</div>
-
-<div class="related-section">
+    <div class="related-section">
   <div class="related-inner">
     <div class="related-label">Related</div>
     <div class="related-grid">
@@ -758,7 +729,7 @@ function buildMap(){
 
 
 document.addEventListener("DOMContentLoaded", function(){
- renderToggle();buildCarbonMajors();buildMap();
+ renderToggle();buildMap();
  document.getElementById("searchInput").addEventListener("keydown",function(e){if(e.key==="Enter")handleSearch();});
  const slider=document.getElementById("trend-slider");
  if(slider)slider.addEventListener("input",updateTrendYear);
@@ -773,11 +744,6 @@ function toggleTheme(){
 }
 </script>
 <script>
-function loadVideo(id){
-  const wrap=document.getElementById('video-'+id);
-  if(!wrap)return;
-  wrap.outerHTML='<div class="video-wrap"><iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1" title="YouTube video" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
-}
 </script>
 </body>
 </html>
